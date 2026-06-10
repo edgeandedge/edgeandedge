@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1622; --paper:#EFEAE2; --teal:#0E8A7B; --emerald:#2BA37C;
+    --blue:#1E5C97; --slate:#3C4350; --fade:#8A8779; --line:#D9D2C2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    background:
+      radial-gradient(120% 140% at 85% 15%, #F5F1E8 0%, var(--paper) 55%),
+      var(--paper);
+    font-family:"Archivo",sans-serif;color:var(--ink);position:relative;
+  }
+  /* dashed perimeter frame */
+  .frame{position:absolute;inset:34px;border:1.5px dashed #C8C0AD;border-radius:4px}
+  /* corner ticks */
+  .tick{position:absolute;width:30px;height:30px}
+  .tick::before,.tick::after{content:"";position:absolute;background:var(--teal)}
+  .tick::before{width:30px;height:3px;top:0;left:0}
+  .tick::after{width:3px;height:30px;top:0;left:0}
+  .tick.tl{top:24px;left:24px}
+  .tick.tr{top:24px;right:24px;transform:scaleX(-1)}
+  .tick.bl{bottom:24px;left:24px;transform:scaleY(-1)}
+  .tick.br{bottom:24px;right:24px;transform:scale(-1,-1)}
+
+  .stage{position:absolute;inset:34px;display:flex;align-items:center;padding:0 76px 0 80px;gap:40px}
+
+  .left{flex:1;min-width:0}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--teal);
+    display:inline-flex;align-items:center;gap:.7em;margin-bottom:26px;
+  }
+  .eyebrow::before{content:"";width:11px;height:11px;background:var(--teal);transform:rotate(45deg)}
+  h1{
+    font-weight:900;font-size:84px;line-height:.92;letter-spacing:-.035em;
+    color:var(--ink);margin-bottom:24px;
+  }
+  h1 .amp{
+    background:linear-gradient(120deg,var(--teal) 0%,var(--emerald) 45%,var(--blue) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  h1 sup{font-size:26px;color:var(--teal);font-weight:700;top:-1.6em;margin-left:4px}
+  .tag{font-size:24px;line-height:1.4;color:var(--slate);max-width:20ch;margin-bottom:34px;font-weight:500}
+  .url{
+    font-family:"IBM Plex Mono",monospace;font-size:20px;font-weight:600;
+    letter-spacing:.02em;color:var(--ink);display:inline-flex;align-items:center;gap:12px;
+  }
+  .url .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(14,138,123,.18)}
+  .formcode{
+    position:absolute;left:80px;bottom:6px;
+    font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--fade);
+  }
+
+  /* seal */
+  .right{flex-shrink:0;width:440px;height:440px;position:relative}
+  .seal{width:440px;height:440px;display:block}
+  .seal text{font-family:"IBM Plex Mono",monospace;fill:var(--ink)}
+  .seal .ring-txt{font-size:16px;font-weight:600;letter-spacing:4px}
+  .amp-big{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:"Archivo",sans-serif;font-weight:900;font-size:260px;line-height:1;
+    background:linear-gradient(125deg,var(--teal) 0%,var(--emerald) 48%,var(--blue) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    padding-bottom:14px;
+  }
+
+  /* jewel facets */
+  .facet{position:absolute}
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <span class="tick tl"></span><span class="tick tr"></span>
+  <span class="tick bl"></span><span class="tick br"></span>
+
+  <!-- jewel facets, echoing Edge & Node -->
+  <svg class="facet" style="top:60px;right:58px" width="120" height="120" viewBox="0 0 120 120">
+    <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2BA37C"/><stop offset="1" stop-color="#0E8A7B"/></linearGradient></defs>
+    <polygon points="60,8 112,40 60,72 8,40" fill="url(#g1)" opacity=".92"/>
+    <polygon points="60,72 112,40 112,96 60,118" fill="#0B6E62" opacity=".82"/>
+    <polygon points="60,72 8,40 8,96 60,118" fill="#16766B" opacity=".9"/>
+  </svg>
+  <svg class="facet" style="bottom:54px;right:120px" width="86" height="86" viewBox="0 0 86 86">
+    <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E6CB0"/><stop offset="1" stop-color="#1E5C97"/></linearGradient></defs>
+    <polygon points="43,4 82,43 43,82 4,43" fill="url(#g2)" opacity=".9"/>
+  </svg>
+  <svg class="facet" style="top:150px;left:46%;" width="60" height="60" viewBox="0 0 60 60">
+    <circle cx="30" cy="30" r="26" fill="none" stroke="#2BA37C" stroke-width="3" opacity=".55"/>
+  </svg>
+
+  <div class="stage">
+    <div class="left">
+      <span class="eyebrow">A Perimeter Company</span>
+      <h1>Edge&nbsp;<span class="amp">&amp;</span>&nbsp;Edge<sup>®</sup></h1>
+      <p class="tag">The next-generation blockchain perimeter platform.</p>
+      <span class="url"><span class="dot"></span>edgeandedgeandedge.com</span>
+    </div>
+
+    <div class="right">
+      <svg class="seal" viewBox="0 0 440 440">
+        <circle cx="220" cy="220" r="206" fill="none" stroke="#0E1622" stroke-width="2"/>
+        <circle cx="220" cy="220" r="196" fill="none" stroke="#0E1622" stroke-width="1"/>
+        <circle cx="220" cy="220" r="142" fill="none" stroke="#0E1622" stroke-width="1.5"/>
+        <!-- N/E/S/W ticks -->
+        <g stroke="#0E8A7B" stroke-width="3">
+          <line x1="220" y1="14" x2="220" y2="30"/>
+          <line x1="220" y1="410" x2="220" y2="426"/>
+          <line x1="14" y1="220" x2="30" y2="220"/>
+          <line x1="410" y1="220" x2="426" y2="220"/>
+        </g>
+        <defs>
+          <path id="top" d="M 51,220 A 169,169 0 0 1 389,220"/>
+          <path id="bot" d="M 55,220 A 165,165 0 0 0 385,220"/>
+        </defs>
+        <text class="ring-txt"><textPath href="#top" startOffset="50%" text-anchor="middle">EDGE &amp; EDGE · EST. LAST TUESDAY</textPath></text>
+        <text class="ring-txt"><textPath href="#bot" startOffset="50%" text-anchor="middle">OPERATING AT THE EDGE</textPath></text>
+      </svg>
+      <div class="amp-big">&amp;</div>
+    </div>
+  </div>
+
+  <span class="formcode">FORM E&amp;E-000 · FILED IN TRIPLICATE · DO NOT REMOVE FROM PERIMETER</span>
+</body>
+</html>
