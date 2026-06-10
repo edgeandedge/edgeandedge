@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Redemption — Edge &amp; Edge</title>
+<meta name="description" content="Your shares are being minted at the edge. Nothing is wrong. We are working on it.">
+<meta name="robots" content="noindex">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Edge &amp; Edge">
+<meta property="og:url" content="https://edgeandedgeandedge.com/redeem-share">
+<meta property="og:title" content="Share Redemption — FORM E&amp;E-SHARE">
+<meta property="og:description" content="Your shares exist. They are simply not yet observable. This is by design. Proof of reserves complete (audited by us).">
+<meta property="og:image" content="https://edgeandedgeandedge.com/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1622;--ink-2:#F7F4EC;--paper:#FFFFFF;--paper-2:#EFEAE2;
+    --amber:#0E8A7B;--amber-deep:#0B6E62;--stamp:#1E5C97;
+    --line:#E3DDCF;--text:#3C4350;--text-bright:#0E1622;--text-fade:#8A8779;
+    --ink-on-paper:#0E1622;--fade-on-paper:#6E6A5E;
+    --maxw:920px;--gut:clamp(20px,5vw,56px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper-2);color:var(--text);font-family:"Public Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  ::selection{background:var(--amber);color:var(--paper)}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+  .formcode{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--fade-on-paper);text-transform:uppercase}
+
+  /* reg strip */
+  .reg{background:var(--ink);color:var(--paper);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;gap:16px;padding:7px var(--gut);flex-wrap:wrap}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(245,242,234,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;flex-direction:column;line-height:1}
+  .brand .word{font-family:"Archivo",sans-serif;font-weight:900;font-size:20px;letter-spacing:-.01em;color:var(--text-bright);display:flex;align-items:center;gap:5px}
+  .brand .word sup{font-size:9px;color:var(--amber);font-weight:600;top:-.7em}
+  .brand .sub{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.18em;color:var(--text-fade);margin-top:5px;text-transform:uppercase}
+  .back{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--text);text-decoration:none;border:1px solid var(--line);padding:8px 13px;border-radius:2px;transition:border-color .15s,color .15s}
+  .back:hover{border-color:var(--amber);color:var(--amber)}
+
+  /* perimeter frame */
+  .perimeter{position:relative}
+  .tick{position:absolute;width:18px;height:18px;pointer-events:none}
+  .tick::before,.tick::after{content:"";position:absolute;background:var(--amber)}
+  .tick::before{width:18px;height:2px;top:0;left:0}
+  .tick::after{width:2px;height:18px;top:0;left:0}
+  .tick.tr{right:0;transform:scaleX(-1)}.tick.bl{bottom:0;transform:scaleY(-1)}.tick.br{right:0;bottom:0;transform:scale(-1,-1)}
+
+  main{padding:clamp(40px,7vw,80px) 0 60px}
+  .hero-frame{position:relative;border:1px dashed var(--line);padding:clamp(26px,5vw,52px);background:var(--paper);border-radius:4px;box-shadow:0 18px 48px -30px rgba(14,22,34,.22)}
+
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:.6em}
+  .eyebrow::before{content:"";width:9px;height:9px;background:var(--amber);transform:rotate(45deg)}
+
+  .status-pill{display:inline-flex;align-items:center;gap:9px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--stamp);border:1px solid var(--stamp);border-radius:999px;padding:6px 14px;margin:18px 0 8px}
+  .status-pill .blink{width:8px;height:8px;border-radius:50%;background:var(--stamp);animation:pulse 1.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  h1{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(30px,5.4vw,58px);line-height:1.0;letter-spacing:-.03em;color:var(--text-bright);margin:10px 0 16px;max-width:18ch}
+  .lead{font-size:clamp(16px,1.8vw,20px);max-width:60ch;color:var(--text);margin:0 0 8px}
+  .lead em{color:var(--text-bright);font-style:italic}
+
+  /* progress */
+  .qwrap{margin:30px 0 6px}
+  .qlabel{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--fade-on-paper);text-transform:uppercase;margin-bottom:8px}
+  .qbar{height:10px;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .qbar i{display:block;height:100%;width:6%;background:linear-gradient(90deg,var(--amber),var(--stamp));transition:width 1.1s linear}
+  .qnote{font-size:13px;color:var(--fade-on-paper);margin-top:9px;font-style:italic}
+
+  .ticket{font-family:"IBM Plex Mono",monospace;font-size:13px;background:var(--ink);color:var(--paper);padding:16px 18px;border-radius:3px;margin:26px 0 0;line-height:1.9}
+  .ticket b{color:var(--amber)}
+  .ticket .muted{color:#8b93a3}
+
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  .btn{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;letter-spacing:.04em;border:none;cursor:pointer;padding:12px 18px;border-radius:2px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:transform .12s,background .15s,color .15s,border-color .15s}
+  .btn-amber{background:var(--amber);color:var(--paper)}
+  .btn-amber:hover{background:#11A593;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--text-bright);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+  /* sections */
+  section.block{margin-top:clamp(34px,5vw,56px)}
+  .block h2{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);letter-spacing:-.02em;color:var(--text-bright);margin:0 0 6px}
+  .block .sub{color:var(--text);margin:0 0 22px;max-width:62ch}
+
+  /* proof of reserves */
+  .por{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:clamp(24px,4vw,40px);box-shadow:0 18px 48px -30px rgba(14,22,34,.18);position:relative;overflow:hidden}
+  .por .stamp-big{position:absolute;top:20px;right:16px;transform:rotate(11deg);color:var(--amber);border:2.5px solid var(--amber);border-radius:4px;padding:6px 11px;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+  .por h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,26px);margin:8px 0 18px;color:var(--ink-on-paper);max-width:24ch;line-height:1.15}
+  .por dl{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0}
+  .por .row{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line);grid-column:1/-1}
+  .por dt{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--fade-on-paper)}
+  .por dd{margin:0;font-family:"Archivo",sans-serif;font-weight:700;color:var(--ink-on-paper);text-align:right}
+  .por dd .ok{color:var(--amber)}
+  .por .fine{font-size:12.5px;color:var(--fade-on-paper);border-top:1px solid var(--line);padding-top:14px;margin:16px 0 0;line-height:1.6}
+
+  /* timeline */
+  .timeline{list-style:none;margin:0;padding:0}
+  .timeline li{display:flex;gap:18px;padding:16px 0;border-top:1px solid var(--line)}
+  .timeline li .t{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--stamp);flex-shrink:0;width:128px;letter-spacing:.04em}
+  .timeline li .d{font-size:15px;color:var(--text)}
+  .timeline li .d b{color:var(--text-bright)}
+
+  /* faq mini */
+  details{border-top:1px solid var(--line)}
+  details:last-child{border-bottom:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;padding:18px 0;display:flex;gap:14px;align-items:center;font-family:"Archivo",sans-serif;font-weight:600;font-size:clamp(15px,1.9vw,19px);color:var(--text-bright);letter-spacing:-.01em}
+  summary::-webkit-details-marker{display:none}
+  summary .q{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--amber)}
+  summary .plus{margin-left:auto;font-family:"IBM Plex Mono",monospace;color:var(--amber);font-size:20px;transition:transform .2s}
+  details[open] summary .plus{transform:rotate(45deg)}
+  .ans{padding:0 0 22px 38px;font-size:15px;color:var(--text);max-width:70ch;line-height:1.65}
+  .ans em{color:var(--text-bright);font-style:italic}
+
+  footer{margin-top:clamp(50px,7vw,80px);border-top:1px solid var(--line);background:var(--ink-2)}
+  .foot{padding:30px 0;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-fade);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .disclaimer{font-size:12.5px;line-height:1.7;color:var(--text-fade);padding:26px 0;border-bottom:1px solid var(--line)}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);border:1px solid var(--amber-deep);padding:13px 20px;border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;z-index:120;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;letter-spacing:.04em;max-width:90vw;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:620px){.ticket{font-size:12px}.timeline li{flex-direction:column;gap:4px}.timeline li .t{width:auto}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="reg">
+  <b>FORM&nbsp;E&amp;E-SHARE · REDEMPTION IN PROGRESS · DO NOT REFRESH (IT WON'T HELP)</b>
+  <span>STATUS: PROVISIONALLY DEGRADED</span>
+</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" style="text-decoration:none">
+      <span class="word">Edge&nbsp;&amp;&nbsp;Edge<sup>®</sup></span>
+      <span class="sub">A Perimeter Company · Est. Last Tuesday</span>
+    </a>
+    <a class="back" href="/">← Return to the Perimeter</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero-frame perimeter">
+      <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+
+      <span class="eyebrow">SHARE REDEMPTION PORTAL</span>
+      <div class="status-pill"><span class="blink"></span> Something is wrong — we are working on it</div>
+      <h1>Your shares are almost here.</h1>
+      <p class="lead">Good news: <em>nothing is wrong</em>. Better news: we are working on it anyway. Your shares <em>exist</em> — they are simply not yet observable. This is by design, and the design is, for your protection, redacted.</p>
+      <p class="lead">We have detected an undisclosed inbound transfer to an address you were warmly invited to guess. It has been received, noted, and placed in the queue, where it will be processed in the order in which it was received, and in no particular order.</p>
+
+      <div class="qwrap">
+        <div class="qlabel"><span>MINTING SHARES AT THE EDGE</span><span id="qpct">6%</span></div>
+        <div class="qbar"><i id="qfill"></i></div>
+        <div class="qnote" id="qnote">Settlement estimate: 6–8 business epochs. The edge is currently busy.</div>
+      </div>
+
+      <div class="ticket">
+        REDEMPTION TICKET: <b id="ticket">E&amp;E-SHR-………</b><br>
+        SHARES OWED: <b id="shares">an undisclosed amount</b> <span class="muted">(provisional)</span><br>
+        SHARES OBSERVABLE: <b>0</b> <span class="muted">(also provisional)</span><br>
+        POSITION IN QUEUE: <b id="queue">…</b> <span class="muted">(advancing)</span><br>
+        ESTIMATED WAIT: <b>6–8 BUSINESS EPOCHS</b>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-amber" id="check">↻ Check Status Again</button>
+        <a class="btn btn-ghost" href="/#governance">Read EEP-1 →</a>
+      </div>
+    </div>
+
+    <!-- proof of reserves -->
+    <section class="block">
+      <h2>Proof of Reserves</h2>
+      <p class="sub">In the interest of radical transparency (subject to redaction), we have completed a full attestation of reserves backing every share.</p>
+      <div class="por">
+        <span class="stamp-big">✓ Audited</span>
+        <span class="formcode">ATTESTATION E&amp;E-PoR-01 · COMPLETED</span>
+        <h3>Reserves are fully backed.<sup style="color:var(--stamp)">*</sup></h3>
+        <dl>
+          <div class="row"><dt>Reserve ratio</dt><dd><span class="ok">100%+</span> <span style="color:var(--fade-on-paper);font-weight:400">(rounding applied in our favour)</span></dd></div>
+          <div class="row"><dt>Auditor</dt><dd>Us</dd></div>
+          <div class="row"><dt>Auditor independence</dt><dd>Total, from you</dd></div>
+          <div class="row"><dt>Methodology</dt><dd>Redacted</dd></div>
+          <div class="row"><dt>Reserves consist of</dt><dd>Forward-looking statements,<br>one (1) firehose, &amp; the absence&nbsp;of&nbsp;proof</dd></div>
+          <div class="row"><dt>Auditor's opinion</dt><dd>Unqualified, and&nbsp;unqualifiable</dd></div>
+          <div class="row"><dt>Funds located</dt><dd style="color:var(--stamp)">Somewhere</dd></div>
+        </dl>
+        <p class="fine"><sup>*</sup> "Fully backed" is a forward-looking statement and looks forward to nothing in particular. Reserves are held at the edge, in a manner that is broadly rectangular, and are not available for inspection, withdrawal, or, strictly speaking, confirmation. Can we prove it? We cannot. But we can prove, to audit grade, that we <em>cannot</em> — and a proof of the absence of proof is itself a kind of proof.</p>
+      </div>
+    </section>
+
+    <!-- incident timeline -->
+    <section class="block">
+      <h2>Incident Timeline</h2>
+      <p class="sub">The Compliance Subcommittee is providing live updates, on a timeline presently under review.</p>
+      <ul class="timeline">
+        <li><span class="t">EPOCH 0</span><span class="d"><b>Transfer received.</b> An undisclosed amount arrived somewhere. We thank you for existing within the perimeter.</span></li>
+        <li><span class="t">EPOCH 0 +2m</span><span class="d"><b>Shares provisioned.</b> Your shares were minted at the edge and immediately, for safekeeping, made unobservable.</span></li>
+        <li><span class="t">EPOCH 1</span><span class="d"><b>Anomaly detected.</b> A Subcommittee was convened. The anomaly is that everything is, technically, fine.</span></li>
+        <li><span class="t">EPOCH 1 +∞</span><span class="d"><b>Root cause identified.</b> Root cause has been identified as pending. A fix is being proposed, reviewed, and — in accordance with EEP-1 — tabled.</span></li>
+        <li><span class="t">EPOCH 2</span><span class="d"><b>Proof of Reserves completed.</b> Audited by us, to us, on our own letterhead. Result: reassuring.</span></li>
+        <li><span class="t">NOW</span><span class="d"><b>Working on it.</b> We are working on it. We will continue to work on it. This is the work.</span></li>
+        <li><span class="t">SOON™</span><span class="d"><b>Shares appear.</b> Your shares will become observable in 6–8 business epochs. The estimate is firm and subject to change.</span></li>
+      </ul>
+    </section>
+
+    <!-- mini faq -->
+    <section class="block">
+      <h2>Frequently Deflected Questions</h2>
+      <p class="sub">Answers are provided for completeness, and should not be mistaken for information.</p>
+
+      <details open>
+        <summary><span class="q">Q.</span>Where are my shares?<span class="plus">+</span></summary>
+        <div class="ans">They are being minted at the edge and will settle shortly. "Shortly" is defined elsewhere, in a document that supersedes itself. Your shares are <em>safe</em> — so safe, in fact, that not even we can reach them.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Where did my undisclosed amount go?<span class="plus">+</span></summary>
+        <div class="ans">Somewhere. It has been received and is fully accounted for, to a standard of accounting we decline to disclose. Per Proof of Reserves above, funds have been <em>located</em>. We will not be saying where, when, or in what form.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Can I withdraw?<span class="plus">+</span></summary>
+        <div class="ans">Withdrawals are fully supported and have always been fully supported. To initiate one, simply submit Form&nbsp;E&amp;E-7B, in triplicate, in person, to the Annex — which is itself currently unobservable, pending review of the perimeter.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Is this a rug?<span class="plus">+</span></summary>
+        <div class="ans">Absolutely not. A rug would imply something was pulled. Nothing has been pulled. Everything remains precisely where it is — namely, somewhere, at the edge, broadly rectangular, and provably unprovable. <em>We are working on it.</em></div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>When, realistically?<span class="plus">+</span></summary>
+        <div class="ans">6–8 business epochs. Realism is not a service we currently offer, but it is on the roadmap, pending a process for offering it being proposed, reviewed, and tabled.</div>
+      </details>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <p class="disclaimer">This page constitutes neither advice, a service, a product, a promise, a guarantee of shares, nor — in several jurisdictions — a sentence. Shares, where they exist, are provisional, unobservable, and non-transferable until observable, at which point this notice will be updated, or withdrawn. Proof of Reserves was conducted by Edge &amp; Edge, on behalf of Edge &amp; Edge, and reviewed by Edge &amp; Edge. Past performance is indicative of nothing in particular. Forward-looking statements look forward to nothing in particular. The firehose is pressurized at all times. All shares are reserved. © 2026 Edge &amp; Edge. This document supersedes itself.</p>
+      <div class="foot">
+        <span>FORM E&amp;E-SHARE · FILED IN TRIPLICATE</span>
+        <span>We are working on it.</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function fmt(n){return n.toLocaleString("en-US");}
+  function rnd(a,b){return Math.floor(a+Math.random()*(b-a));}
+
+  // ticket + queue
+  document.getElementById("ticket").textContent = "E&E-SHR-" + rnd(100000,999999);
+  var queueEl = document.getElementById("queue");
+  var queue = rnd(8000,47000);
+  queueEl.textContent = fmt(queue);
+
+  // queue "advances" (upward, naturally)
+  if(!reduce) setInterval(function(){ queue += rnd(1,6); queueEl.textContent = fmt(queue); }, 1700);
+
+  // progress bar creeps then stalls forever at 63%
+  var fill = document.getElementById("qfill"), pct = document.getElementById("qpct"), note = document.getElementById("qnote");
+  var w = 6;
+  var notes = [
+    "Settlement estimate: 6–8 business epochs. The edge is currently busy.",
+    "Negotiating with the substrate…",
+    "Awaiting quorum (quorum not yet defined)…",
+    "Convening a Subcommittee to review the progress bar…",
+    "Almost there. (This statement is forward-looking.)",
+    "Progress has been escalated. The escalation is also pending."
+  ];
+  function creep(){
+    if(reduce){ w=63; fill.style.width="63%"; pct.textContent="63%"; return; }
+    w += Math.random()*6;
+    if(w>=63){ w=63; }
+    fill.style.width = w + "%";
+    pct.textContent = Math.floor(w) + "%";
+    note.textContent = notes[Math.min(Math.floor((w-6)/10), notes.length-1)];
+    if(w<63) setTimeout(creep, 1100);
+    else note.textContent = "Progress is stable at 63%. This is the correct and final amount of progress.";
+  }
+  setTimeout(creep, 400);
+
+  // toast
+  var toast = document.getElementById("toast"), tt=null;
+  function showToast(m){ toast.textContent=m; toast.classList.add("show"); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove("show");},3400); }
+
+  // "check again" escalating responses
+  var checks = [
+    "STATUS UNCHANGED. WE ARE WORKING ON IT.",
+    "STILL WORKING ON IT. THANK YOU FOR CHECKING.",
+    "YOUR PATIENCE HAS BEEN NOTED AND FILED.",
+    "REFRESHING DOES NOT ADVANCE THE QUEUE. NOR DOES THIS.",
+    "A SUBCOMMITTEE HAS BEEN CONVENED RE: YOUR CHECKING.",
+    "THE SHARES CAN HEAR YOU. THEY ARE NOT READY.",
+    "PROGRESS REMAINS AT 63%. THIS IS GOOD PROGRESS.",
+    "PLEASE STOP CHECKING THE PERIMETER."
+  ];
+  var c = 0;
+  document.getElementById("check").addEventListener("click", function(){
+    showToast(checks[Math.min(c, checks.length-1)]); c++;
+    queue += rnd(2,9); queueEl.textContent = fmt(queue); // checking makes it worse
+  });
+})();
+</script>
+</body>
+</html>
