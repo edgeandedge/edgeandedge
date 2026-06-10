@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edge &amp; Edge — A Perimeter Company</title>
+<meta name="description" content="The next-generation blockchain perimeter platform. We operate at the edge. Of what, we are not at liberty to disclose.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1113;
+    --ink-2:#15191C;
+    --ink-3:#1B2024;
+    --paper:#ECE7DA;
+    --paper-2:#E2DCCB;
+    --amber:#E0A82E;
+    --amber-deep:#B8851C;
+    --stamp:#B23A2E;
+    --line:#2A2F33;
+    --line-paper:#C4BCA6;
+    --text:#C2C8CB;
+    --text-bright:#F2EFE8;
+    --text-fade:#8E9498;
+    --ink-on-paper:#1A1A16;
+    --fade-on-paper:#6B6555;
+    --maxw:1180px;
+    --gut:clamp(20px,5vw,72px);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:"Public Sans",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--amber);color:var(--ink)}
+
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+
+  /* ---------- focus ---------- */
+  a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+
+  /* ---------- eyebrow / form code ---------- */
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+  }
+  .eyebrow::before{content:"";width:9px;height:9px;background:var(--amber);display:inline-block;transform:rotate(45deg)}
+  .formcode{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    color:var(--text-fade);
+    text-transform:uppercase;
+  }
+
+  /* ---------- top regulatory strip ---------- */
+  .reg{
+    background:var(--amber);
+    color:var(--ink);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding:7px var(--gut);
+    flex-wrap:wrap;
+  }
+  .reg b{font-weight:600}
+  .toggle{
+    display:inline-flex;
+    border:1.5px solid var(--ink);
+    border-radius:2px;
+    overflow:hidden;
+    cursor:pointer;
+    user-select:none;
+  }
+  .toggle span{padding:1px 9px;font-weight:600}
+  .toggle .on{background:var(--ink);color:var(--amber)}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:60;
+    background:rgba(14,17,19,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{
+    max-width:var(--maxw);margin:0 auto;
+    padding:14px var(--gut);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .brand{display:flex;flex-direction:column;line-height:1;cursor:pointer}
+  .brand .word{
+    font-family:"Archivo",sans-serif;font-weight:900;
+    font-size:20px;letter-spacing:-.01em;color:var(--text-bright);
+    display:flex;align-items:center;gap:5px;
+  }
+  .brand .word sup{font-size:9px;color:var(--amber);font-weight:600;top:-.7em}
+  .brand .sub{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.18em;color:var(--text-fade);margin-top:5px;text-transform:uppercase}
+  .navlinks{display:flex;gap:26px;align-items:center}
+  .navlinks a{font-size:14px;color:var(--text);font-weight:500;transition:color .15s}
+  .navlinks a:hover{color:var(--amber)}
+  .navlinks a .pin{font-family:"IBM Plex Mono",monospace;font-size:9px;color:var(--text-fade);vertical-align:super;margin-left:2px}
+
+  .btn{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:13px;font-weight:600;letter-spacing:.04em;
+    border:none;cursor:pointer;
+    padding:11px 18px;border-radius:2px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .12s, background .15s, color .15s;
+  }
+  .btn-amber{background:var(--amber);color:var(--ink)}
+  .btn-amber:hover{background:#f0b840;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--text-bright);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+  .btn-dark{background:var(--ink);color:var(--paper);border:1px solid transparent}
+  .btn-dark:hover{background:#000;transform:translateY(-1px)}
+  .nav .btn{padding:9px 16px}
+  .navtoggle{display:none}
+
+  /* ---------- perimeter signature ---------- */
+  .perimeter{position:relative}
+  .tick{position:absolute;width:16px;height:16px;pointer-events:none;z-index:2}
+  .tick::before,.tick::after{content:"";position:absolute;background:var(--amber)}
+  .tick::before{width:16px;height:2px;top:0;left:0}
+  .tick::after{width:2px;height:16px;top:0;left:0}
+  .tick.tr{right:0;transform:scaleX(-1)}
+  .tick.bl{bottom:0;transform:scaleY(-1)}
+  .tick.br{right:0;bottom:0;transform:scale(-1,-1)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:clamp(56px,9vw,120px) 0 clamp(40px,6vw,80px)}
+  .hero-frame{
+    position:relative;
+    border:1px dashed var(--line);
+    padding:clamp(28px,5vw,64px);
+  }
+  .hero-frame .tick{width:22px;height:22px}
+  .hero-frame .tick::before{width:22px}
+  .hero-frame .tick::after{height:22px}
+  .hero svg.draw{
+    position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);
+    pointer-events:none;overflow:visible;
+  }
+  .hero svg.draw rect{
+    fill:none;stroke:var(--amber);stroke-width:2;
+    stroke-dasharray:var(--dash);stroke-dashoffset:var(--dash);
+    animation:draw 2.2s ease-out .15s forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  .product-lockup{
+    font-family:"Archivo",sans-serif;font-weight:900;
+    font-size:clamp(40px,7vw,76px);color:var(--amber);
+    line-height:.9;letter-spacing:-.03em;margin:18px 0 6px;
+  }
+  .hero h1{
+    font-family:"Archivo",sans-serif;font-weight:800;
+    font-size:clamp(30px,5.2vw,60px);line-height:1.02;
+    letter-spacing:-.025em;color:var(--text-bright);
+    margin:0 0 22px;max-width:16ch;
+  }
+  .hero .lead{font-size:clamp(16px,1.7vw,20px);max-width:60ch;color:var(--text);margin:0 0 30px}
+  .hero .lead em{color:var(--text-bright);font-style:italic}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+  /* mandate generator */
+  .mandate{
+    margin-top:38px;border-top:1px solid var(--line);padding-top:22px;
+    display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;
+  }
+  .mandate .label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;color:var(--text-fade);text-transform:uppercase;padding-top:7px;white-space:nowrap}
+  .mandate .gen{
+    flex:1;min-width:260px;
+    font-family:"Archivo",sans-serif;font-weight:600;font-size:clamp(17px,2.1vw,24px);
+    color:var(--text-bright);line-height:1.25;
+  }
+  .mandate .gen b{color:var(--amber);font-weight:700}
+  .regen{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;
+    background:transparent;border:1px solid var(--line);color:var(--text);
+    padding:8px 13px;border-radius:2px;cursor:pointer;white-space:nowrap;
+    transition:border-color .15s,color .15s;
+  }
+  .regen:hover{border-color:var(--amber);color:var(--amber)}
+
+  /* ---------- trust marquee ---------- */
+  .trust{border-block:1px solid var(--line);padding:26px 0;overflow:hidden;background:var(--ink-2)}
+  .trust .cap{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.2em;color:var(--text-fade);text-transform:uppercase;margin-bottom:16px;padding-inline:var(--gut)}
+  .marquee{display:flex;gap:0;white-space:nowrap;width:max-content;animation:scrollx 36s linear infinite}
+  .marquee span{
+    font-family:"Archivo",sans-serif;font-weight:700;font-size:15px;
+    letter-spacing:.04em;color:var(--text-fade);padding:0 32px;
+    display:inline-flex;align-items:center;gap:32px;text-transform:uppercase;
+  }
+  .marquee span::after{content:"◆";color:var(--amber);font-size:9px}
+  @keyframes scrollx{to{transform:translateX(-50%)}}
+
+  /* ---------- generic article section ---------- */
+  .article{padding:clamp(64px,9vw,120px) 0;border-bottom:1px solid var(--line)}
+  .art-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px;flex-wrap:wrap}
+  .art-num{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;color:var(--amber);text-transform:uppercase}
+  .art-head h2{
+    font-family:"Archivo",sans-serif;font-weight:800;
+    font-size:clamp(26px,4vw,46px);line-height:1.04;letter-spacing:-.02em;
+    color:var(--text-bright);margin:0;
+  }
+  .art-lead{font-size:clamp(16px,1.7vw,19px);max-width:62ch;color:var(--text);margin:0 0 46px}
+  .art-lead em{color:var(--text-bright);font-style:italic}
+
+  /* pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .pillar{background:var(--ink);padding:34px 28px}
+  .pillar .ic{width:34px;height:34px;color:var(--amber);margin-bottom:18px}
+  .pillar h3{font-family:"Archivo",sans-serif;font-weight:700;font-size:20px;color:var(--text-bright);margin:0 0 10px;letter-spacing:-.01em}
+  .pillar p{font-size:15px;color:var(--text);margin:0 0 18px}
+  .pillar .formcode{display:block}
+
+  /* products */
+  .grid-prod{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pcard{
+    position:relative;background:var(--ink-2);border:1px solid var(--line);
+    border-radius:3px;padding:26px 24px 24px;overflow:hidden;
+    transition:border-color .2s,transform .2s;
+  }
+  .pcard:hover{border-color:var(--amber-deep);transform:translateY(-2px)}
+  .pcard .name{font-family:"Archivo",sans-serif;font-weight:800;font-size:23px;color:var(--text-bright);letter-spacing:-.02em;margin:0 0 4px}
+  .pcard .name .amp{color:var(--amber)}
+  .pcard p{font-size:14.5px;color:var(--text);margin:14px 0 20px;min-height:60px}
+  .status{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;color:var(--text-fade)}
+  .status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(224,168,46,.18)}
+  .pcard .seal{
+    position:absolute;top:14px;right:-6px;opacity:0;transform:rotate(-14deg) scale(.85);
+    transition:opacity .25s, transform .25s;
+    font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;
+    color:var(--stamp);border:2px solid var(--stamp);border-radius:3px;padding:3px 7px;text-transform:uppercase;
+  }
+  .pcard:hover .seal{opacity:.85;transform:rotate(-9deg) scale(1)}
+
+  /* paper panel */
+  .paper-panel{
+    background:var(--paper);color:var(--ink-on-paper);
+    border-radius:4px;padding:clamp(30px,5vw,56px);position:relative;
+    box-shadow:0 24px 60px -30px rgba(0,0,0,.7);
+  }
+  .paper-panel .formcode{color:var(--fade-on-paper)}
+  .paper-panel h3{font-family:"Archivo",sans-serif;font-weight:800;color:var(--ink-on-paper)}
+
+  /* use cases */
+  .uc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+  .uc-tab{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;
+    background:transparent;border:1px solid var(--line-paper);color:var(--fade-on-paper);
+    padding:8px 14px;border-radius:2px;cursor:pointer;transition:all .15s;
+  }
+  .uc-tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .uc-title{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,28px);letter-spacing:-.01em;margin:0 0 26px;color:var(--ink-on-paper)}
+  .uc-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .uc-list li{display:flex;gap:16px;padding:20px 0;border-top:1px solid var(--line-paper)}
+  .uc-list li .n{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--stamp);flex-shrink:0}
+  .uc-list li .t{font-family:"Archivo",sans-serif;font-weight:600;font-size:16.5px;color:var(--ink-on-paper);line-height:1.3}
+
+  /* reasons (why) */
+  .reasons{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .reason{background:var(--ink);padding:30px 28px;display:flex;gap:20px}
+  .reason .ic{width:30px;height:30px;color:var(--amber);flex-shrink:0;margin-top:3px}
+  .reason h3{font-family:"Archivo",sans-serif;font-weight:700;font-size:19px;color:var(--text-bright);margin:0 0 8px;letter-spacing:-.01em}
+  .reason p{font-size:14.5px;color:var(--text);margin:0}
+
+  /* prove it */
+  .prove{text-align:center;padding:clamp(60px,9vw,120px) 0}
+  .prove .pre{font-size:clamp(16px,2vw,21px);color:var(--text);max-width:46ch;margin:0 auto 18px}
+  .prove .big{
+    font-family:"Archivo",sans-serif;font-weight:900;
+    font-size:clamp(46px,11vw,128px);line-height:.92;letter-spacing:-.04em;
+    color:var(--text-bright);margin:0 0 28px;
+  }
+  .prove .big em{color:var(--amber);font-style:normal}
+  .prove .post{font-size:clamp(16px,1.8vw,19px);color:var(--text);max-width:58ch;margin:0 auto 34px}
+  .prove .post em{color:var(--text-bright);font-style:italic}
+
+  /* assurances */
+  .assure{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .acard{border:1px solid var(--line);border-radius:3px;padding:24px;background:var(--ink-2)}
+  .acard .seal-ic{width:30px;height:30px;color:var(--amber);margin-bottom:14px}
+  .acard h3{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-bright);margin:0 0 8px}
+  .acard p{font-size:14px;color:var(--text);margin:0}
+
+  /* stats */
+  .stats{background:var(--ink-2);border-block:1px solid var(--line)}
+  .stats-in{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+  .stat{background:var(--ink-2);padding:clamp(30px,4vw,48px) 28px;text-align:center}
+  .stat .num{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(34px,5vw,56px);color:var(--amber);line-height:1;letter-spacing:-.02em}
+  .stat .lab{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-fade);margin-top:12px}
+
+  /* governance proposal */
+  .eep-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin:6px 0 24px}
+  .eep-meta span{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fade-on-paper)}
+  .eep-meta b{color:var(--stamp)}
+  .eep-body{font-size:16px;line-height:1.7;max-width:64ch;color:var(--ink-on-paper)}
+
+  /* principles */
+  .principles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .principles li{
+    font-family:"Archivo",sans-serif;font-weight:600;font-size:clamp(17px,2vw,22px);
+    color:var(--text-bright);padding:22px 0;border-top:1px solid var(--line);
+    display:flex;gap:16px;align-items:baseline;letter-spacing:-.01em;
+  }
+  .principles li .b{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--amber);flex-shrink:0}
+
+  /* team */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .member{border:1px solid var(--line);border-radius:3px;padding:26px 24px;background:var(--ink-2)}
+  .member .avatar{
+    width:54px;height:54px;border-radius:50%;border:2px dashed var(--line);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+    font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;color:var(--text-fade);
+  }
+  .member .nm{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:14px;letter-spacing:.08em;color:var(--stamp);background:rgba(178,58,46,.12);padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:10px}
+  .member .role{font-family:"Archivo",sans-serif;font-weight:700;font-size:18px;color:var(--text-bright);letter-spacing:-.01em}
+  .team-note{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--text-fade);margin-top:22px;letter-spacing:.04em}
+
+  /* careers + final */
+  .careers-box{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .careers-box>div{padding:clamp(30px,4vw,48px)}
+  .careers-box .left{background:var(--ink-2);border-right:1px solid var(--line)}
+  .careers-box h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);letter-spacing:-.02em;color:var(--text-bright);margin:0 0 14px}
+  .careers-box .req{font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.9;color:var(--text)}
+  .careers-box .req .k{color:var(--amber)}
+
+  .final{text-align:center;padding:clamp(64px,10vw,130px) 0}
+  .final h2{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(30px,5.5vw,64px);letter-spacing:-.03em;line-height:1;color:var(--text-bright);margin:0 0 16px;max-width:18ch;margin-inline:auto}
+  .final p{font-size:clamp(16px,1.8vw,20px);color:var(--text);max-width:48ch;margin:0 auto 32px}
+
+  /* footer */
+  footer{background:var(--ink-2);border-top:1px solid var(--line);padding:clamp(50px,7vw,90px) 0 40px}
+  .foot-top{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:36px;padding-bottom:46px;border-bottom:1px solid var(--line)}
+  .foot-brand .word{font-family:"Archivo",sans-serif;font-weight:900;font-size:26px;color:var(--text-bright);letter-spacing:-.01em;display:flex;align-items:center;gap:5px}
+  .foot-brand .word sup{font-size:11px;color:var(--amber)}
+  .foot-brand .sub{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;color:var(--text-fade);margin-top:10px;text-transform:uppercase}
+  .fcol h4{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:0 0 16px;font-weight:600}
+  .fcol a{display:block;font-size:14px;color:var(--text);margin-bottom:11px;transition:color .15s}
+  .fcol a:hover{color:var(--text-bright)}
+  .fcol a .rd{font-family:"IBM Plex Mono",monospace;font-size:9px;color:var(--text-fade);margin-left:4px}
+  .disclaimer{font-size:12.5px;line-height:1.75;color:var(--text-fade);max-width:none;padding:34px 0;border-bottom:1px solid var(--line)}
+  .disclaimer em{color:var(--text)}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:26px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-fade)}
+
+  /* public notices */
+  .notices{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .notice{position:relative;background:var(--paper);color:var(--ink-on-paper);border-radius:4px;padding:clamp(26px,4vw,40px);box-shadow:0 24px 60px -30px rgba(0,0,0,.7);overflow:hidden}
+  .notice .formcode{color:var(--fade-on-paper)}
+  .notice h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(19px,2.5vw,25px);letter-spacing:-.01em;margin:10px 0 14px;color:var(--ink-on-paper);max-width:22ch;line-height:1.15}
+  .notice p{font-size:14.5px;line-height:1.62;margin:0 0 12px;color:var(--ink-on-paper)}
+  .notice .star{color:var(--stamp);font-weight:700}
+  .notice .fine{font-size:12px;color:var(--fade-on-paper);border-top:1px solid var(--line-paper);padding-top:13px;margin-top:16px;margin-bottom:0;line-height:1.55}
+  .notice .stamp-big{position:absolute;top:18px;right:14px;transform:rotate(11deg);color:var(--stamp);border:2.5px solid var(--stamp);border-radius:4px;padding:5px 9px;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+  .shrug{font-family:"IBM Plex Mono",monospace;font-weight:600;cursor:help}
+
+  /* faq */
+  .faq{border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{
+    list-style:none;cursor:pointer;padding:22px 0;display:flex;align-items:center;gap:16px;
+    font-family:"Archivo",sans-serif;font-weight:600;font-size:clamp(16px,2vw,21px);
+    color:var(--text-bright);letter-spacing:-.01em;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .q{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--amber);flex-shrink:0}
+  .faq summary .plus{margin-left:auto;font-family:"IBM Plex Mono",monospace;color:var(--amber);font-size:22px;line-height:1;transition:transform .2s;flex-shrink:0}
+  .faq details[open] summary .plus{transform:rotate(45deg)}
+  .faq .a{padding:0 0 26px 46px;font-size:15px;color:var(--text);max-width:74ch;line-height:1.65}
+  .faq .a em{color:var(--text-bright);font-style:italic}
+
+  @media(max-width:760px){
+    .notices{grid-template-columns:1fr}
+    .faq .a{padding-left:0}
+  }
+
+  /* cookie banner */
+  .cookie{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:80;
+    background:var(--paper);color:var(--ink-on-paper);
+    border-radius:4px;box-shadow:0 20px 50px -16px rgba(0,0,0,.6);
+    padding:20px 22px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    max-width:760px;margin:0 auto;
+    transform:translateY(140%);transition:transform .4s cubic-bezier(.22,1,.36,1);
+  }
+  .cookie.show{transform:translateY(0)}
+  .cookie p{font-size:13.5px;margin:0;flex:1;min-width:260px;line-height:1.55}
+  .cookie .formcode{color:var(--fade-on-paper);display:block;margin-bottom:6px}
+  .cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* modal */
+  .modal-bg{
+    position:fixed;inset:0;z-index:100;background:rgba(8,10,11,.78);
+    backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;
+    padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;
+  }
+  .modal-bg.show{opacity:1;pointer-events:auto}
+  .modal{
+    background:var(--paper);color:var(--ink-on-paper);border-radius:5px;
+    max-width:480px;width:100%;padding:34px 32px 30px;position:relative;
+    box-shadow:0 30px 80px -20px #000;transform:scale(.96);transition:transform .25s;
+  }
+  .modal-bg.show .modal{transform:scale(1)}
+  .modal .formcode{color:var(--fade-on-paper)}
+  .modal h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.01em;margin:6px 0 14px;color:var(--ink-on-paper)}
+  .modal p{font-size:15px;line-height:1.6;margin:0 0 14px}
+  .modal .ticket{font-family:"IBM Plex Mono",monospace;font-size:13px;background:var(--ink);color:var(--paper);padding:14px 16px;border-radius:3px;margin:18px 0;line-height:1.8}
+  .modal .ticket b{color:var(--amber)}
+  .qbar{height:6px;background:var(--line-paper);border-radius:3px;overflow:hidden;margin-top:8px}
+  .qbar i{display:block;height:100%;width:6%;background:var(--amber);transition:width 1s linear}
+  .modal .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;line-height:1;color:var(--fade-on-paper);cursor:pointer;font-family:"IBM Plex Mono",monospace}
+  .modal .close:hover{color:var(--ink-on-paper)}
+
+  /* toast */
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink-3);color:var(--text-bright);border:1px solid var(--amber-deep);
+    padding:13px 20px;border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;
+    z-index:120;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;letter-spacing:.04em;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .pillars,.grid-prod,.assure,.team{grid-template-columns:1fr 1fr}
+    .reasons{grid-template-columns:1fr}
+    .foot-top{grid-template-columns:1fr 1fr 1fr}
+    .careers-box{grid-template-columns:1fr}
+    .careers-box .left{border-right:none;border-bottom:1px solid var(--line)}
+    .stats-in{grid-template-columns:1fr 1fr 1fr}
+  }
+  @media(max-width:680px){
+    .navlinks{
+      position:absolute;top:100%;left:0;right:0;background:var(--ink);
+      flex-direction:column;align-items:flex-start;gap:0;padding:8px var(--gut) 18px;
+      border-bottom:1px solid var(--line);display:none;
+    }
+    .navlinks.open{display:flex}
+    .navlinks a{padding:11px 0;width:100%;border-bottom:1px solid var(--line)}
+    .nav .btn{display:none}
+    .navtoggle{display:inline-flex;background:none;border:1px solid var(--line);color:var(--text-bright);
+      font-family:"IBM Plex Mono",monospace;font-size:12px;padding:8px 12px;border-radius:2px;cursor:pointer}
+    .pillars,.grid-prod,.assure,.team,.uc-list,.principles,.stats-in,.foot-top{grid-template-columns:1fr}
+    .pillars,.reasons{border:none}
+    .pillar,.reason{border:1px solid var(--line)}
+    .reason{flex-direction:column;gap:10px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+    .hero svg.draw rect{stroke-dashoffset:0}
+    .cookie{transform:translateY(0)}
+  }
+</style>
+</head>
+<body>
+
+<!-- regulatory strip -->
+<div class="reg">
+  <b>FORM&nbsp;E&amp;E-001 · PROVISIONAL · DO NOT REMOVE FROM PERIMETER</b>
+  <div class="toggle" id="ha" role="button" tabindex="0" aria-label="Switch between Human and Agent">
+    <span class="on" id="ha-h">HUMAN</span><span id="ha-a">AGENT</span>
+  </div>
+</div>
+
+<!-- nav -->
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand" id="brand" title="Property of the Perimeter">
+      <span class="word">Edge&nbsp;&amp;&nbsp;Edge<sup>®</sup></span>
+      <span class="sub">A Perimeter Company · Est. Last Tuesday</span>
+    </div>
+    <nav class="navlinks" id="navlinks">
+      <a href="#instruments">Watt.</a>
+      <a href="#mandate">Perimeter Consulting</a>
+      <a href="#assurances">Trust &amp; Redaction<span class="pin">[†]</span></a>
+      <a href="#governance">Filings</a>
+      <a href="#membership">The Annex</a>
+    </nav>
+    <button class="btn btn-amber onboard">Begin Onboarding →</button>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">MENU ☰</button>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-frame perimeter">
+      <svg class="draw" preserveAspectRatio="none" aria-hidden="true"><rect x="1" y="1" rx="2"></rect></svg>
+      <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+
+      <span class="eyebrow">NOW INDEXING THE EDGE</span>
+      <div class="product-lockup">Watt.</div>
+      <h1>The next-generation blockchain perimeter platform.</h1>
+      <p class="lead">Edge&nbsp;&amp;&nbsp;Edge gives regulated entities, semi-regulated entities, and entities merely <em>anticipating</em> regulation the structured, auditable, broadly rectangular blockchain data they require — without disclosing what is inside.</p>
+      <div class="cta-row">
+        <button class="btn btn-amber onboard">Begin Onboarding →</button>
+        <button class="btn btn-ghost" id="whitepaper">Read the Whitepaper ↗</button>
+      </div>
+
+      <div class="mandate">
+        <span class="label">Our Mandate:</span>
+        <div class="gen" id="mandate-text"></div>
+        <button class="regen" id="regen">↻ Regenerate Mandate</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- trust -->
+<section class="trust">
+  <div class="cap">Provisionally Recognized By</div>
+  <div class="marquee" id="marquee"></div>
+</section>
+
+<!-- ARTICLE I — mandate -->
+<section class="article" id="mandate">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Article I</span><h2>Mandate</h2></div>
+    <p class="art-lead reveal">Building the right blockchain infrastructure is half the problem. The other half is also a problem. We address <em>neither</em>, jointly, at the edge.</p>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg>
+        <h3>We index the edges.</h3>
+        <p>Every edge has precisely two sides. We are presently concerned with both, and reserve the right to discover a third.</p>
+        <span class="formcode">Ref. E&amp;E-I.a</span>
+      </div>
+      <div class="pillar">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+        <h3>We decentralize the perimeter.</h3>
+        <p>Authority is distributed evenly across the perimeter, then recalled centrally for review. This is decentralization.</p>
+        <span class="formcode">Ref. E&amp;E-I.b</span>
+      </div>
+      <div class="pillar">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l9 4 9-4M3 12l9 4 9-4M3 7l9-4 9 4-9 4z"/></svg>
+        <h3>We administer the substrate.</h3>
+        <p>The substrate underlies everything. We sit beneath the substrate, administering it upward, on a quarterly basis.</p>
+        <span class="formcode">Ref. E&amp;E-I.c</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE II — instruments / products -->
+<section class="article" id="instruments">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Article II</span><h2>Instruments</h2></div>
+    <p class="art-lead reveal">A full suite of composable instruments for operating at the edge. Each is permissionless, verifiable, and available pending submission of the appropriate form.</p>
+    <div class="grid-prod reveal">
+      <div class="pcard">
+        <span class="seal">Flagship</span>
+        <div class="name"><span class="amp">Watt.</span></div>
+        <span class="formcode">FORM E&amp;E-2.0</span>
+        <p>A foundational building block — not, we stress, the end product. A permissionless boundary placed around an interior we are not at liberty to describe.</p>
+        <span class="status">Provisionally Live</span>
+      </div>
+      <div class="pcard">
+        <span class="seal">Reviewed</span>
+        <div class="name">The Graft</div>
+        <span class="formcode">FORM E&amp;E-2.1</span>
+        <p>A decentralized protocol for querying things you already knew — slower, and with provenance.</p>
+        <span class="status">Pending Review</span>
+      </div>
+      <div class="pcard">
+        <span class="seal">Convened</span>
+        <div class="name">Subcommittees</div>
+        <span class="formcode">FORM E&amp;E-2.2</span>
+        <p>Composable units of deferred responsibility. Deploy a Subcommittee to index any decision indefinitely.</p>
+        <span class="status">Convened</span>
+      </div>
+      <div class="pcard">
+        <span class="seal">Submerged</span>
+        <div class="name">Substreams™</div>
+        <span class="formcode">FORM E&amp;E-2.3</span>
+        <p>Like streams, but underneath, and slower, and you must apply in writing to the relevant Subcommittee.</p>
+        <span class="status">Underflowing</span>
+      </div>
+      <div class="pcard">
+        <span class="seal">Hazard</span>
+        <div class="name">Firehose</div>
+        <span class="formcode">FORM E&amp;E-2.4</span>
+        <p>We maintain a literal firehose. For regulatory reasons. Under no circumstances approach the firehose.</p>
+        <span class="status">Pressurized</span>
+      </div>
+      <div class="pcard">
+        <span class="seal">Noted</span>
+        <div class="name">Registry of Adjacent Knowledge</div>
+        <span class="formcode">FORM E&amp;E-2.5</span>
+        <p>A trustless ledger recording who said what, near whom, and whether — on balance — it counted.</p>
+        <span class="status">Noted</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE III — use cases (paper) -->
+<section class="article" id="uses">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Article III</span><h2>Permitted Uses</h2></div>
+    <p class="art-lead reveal">Built for entities under, near, or anticipating regulation. Select your classification below to view the uses to which you are entitled.</p>
+    <div class="paper-panel reveal">
+      <span class="formcode">SCHEDULE 3 — PERMITTED USES (NON-EXHAUSTIVE, NON-BINDING)</span>
+      <div class="uc-tabs" role="tablist" style="margin-top:18px">
+        <button class="uc-tab" role="tab" aria-selected="true" data-uc="0">Stablecoin Issuers</button>
+        <button class="uc-tab" role="tab" aria-selected="false" data-uc="1">Banks</button>
+        <button class="uc-tab" role="tab" aria-selected="false" data-uc="2">Analytics Teams</button>
+        <button class="uc-tab" role="tab" aria-selected="false" data-uc="3">Other Perimeters</button>
+      </div>
+      <h3 class="uc-title" id="uc-title"></h3>
+      <ul class="uc-list" id="uc-list"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE IV — why -->
+<section class="article" id="why">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Article IV</span><h2>Why Entities Choose Watt.</h2></div>
+    <p class="art-lead reveal">Four reasons, ratified by the Standing Working Group on Standing.</p>
+    <div class="reasons reveal">
+      <div class="reason">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div><h3>On-Prem Sovereignty</h3><p>You own your data. We also own your data. Ownership is distributed such that, ultimately, no one owns anything. This is sovereignty.</p></div>
+      </div>
+      <div class="reason">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M8 13l-2 8 6-3 6 3-2-8"/></svg>
+        <div><h3>Audit-Grade Lineage</h3><p>Every dataset traces cleanly to an onchain source, a Subcommittee, and at least one documented regret.</p></div>
+      </div>
+      <div class="reason">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v6H4zM4 14h10v6H4z"/></svg>
+        <div><h3>Compliance-First Architecture</h3><p>Built for institutions navigating rules that do not yet exist, will exist shortly, or existed briefly and were quietly withdrawn.</p></div>
+      </div>
+      <div class="reason">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 7H6a3 3 0 000 6h3M15 17h3a3 3 0 000-6h-3M8 12h8"/></svg>
+        <div><h3>Interoperable Foundation</h3><p>Watt. integrates with your existing systems, making them considerably more aware of us, if not more useful.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- can you prove it -->
+<section class="prove">
+  <div class="wrap">
+    <p class="pre reveal">In blockchain, the question regulators always end up asking is the same:</p>
+    <h1 class="big reveal"><em>Can you prove it?</em></h1>
+    <p class="post reveal">We cannot. But we can prove, to audit grade, that we <em>cannot</em> — and a proof of the absence of proof is itself a kind of proof. <strong>Watt.</strong> makes this rigorous, reproducible, and available for examination.</p>
+    <button class="btn btn-amber onboard reveal">Schedule a Consultation →</button>
+  </div>
+</section>
+
+<!-- ARTICLE V — assurances -->
+<section class="article" id="assurances">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Article V</span><h2>Assurances</h2></div>
+    <p class="art-lead reveal">Banking-grade security and compliance, self-administered. Designed for institutions that need to be seen to need things.</p>
+    <div class="assure reveal">
+      <div class="acard">
+        <svg class="seal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+        <h3>SOC 3 Type ∞</h3><p>Self-certified, annually, by us, to us, on our own letterhead.</p>
+      </div>
+      <div class="acard">
+        <svg class="seal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="6"/></svg>
+        <h3>ISO 00000</h3><p>In process. In process since inception. It will remain, indefinitely, in process.</p>
+      </div>
+      <div class="acard">
+        <svg class="seal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 20l-5-2V4l5 2 6-2 5 2v14l-5-2-6 2zM9 6v14M15 4v14"/></svg>
+        <h3>Compliance Mapping</h3><p>We have a comprehensive map. The territory it describes is, regrettably, redacted.</p>
+      </div>
+      <div class="acard">
+        <svg class="seal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-8 10-8 10S4 17 4 12V6z"/></svg>
+        <h3>Operational Security</h3><p>Incident response is immediate: upon detection, we convene a Subcommittee.</p>
+      </div>
+      <div class="acard">
+        <svg class="seal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h9l3 3v17H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+        <h3>Legal Framework</h3><p>DPAs, SLAs, and one (1) NDA, which you entered into upon reading this card.</p>
+      </div>
+      <div class="acard">
+        <svg class="seal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5a2 2 0 012-2h9l5 5v11M9 13l2 2 4-4"/></svg>
+        <h3>Audit Reports</h3><p>Available upon submission of Form E&amp;E-7B, in triplicate, in person, to the Annex.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- stats -->
+<section class="stats">
+  <div class="stats-in">
+    <div class="stat"><div class="num" data-count="4200000000" data-suffix="">0</div><div class="lab">Edges Indexed (Gross)</div></div>
+    <div class="stat"><div class="num" data-static="0">0</div><div class="lab">Nodes (By Design)</div></div>
+    <div class="stat"><div class="num" data-static="1">0</div><div class="lab">Perimeter</div></div>
+    <div class="stat"><div class="num" id="pending">∞</div><div class="lab">Requests Pending</div></div>
+    <div class="stat"><div class="num" data-static="6–8">6–8</div><div class="lab">Business Epochs (Avg. Response)</div></div>
+    <div class="stat"><div class="num" data-count="100" data-suffix="%">0</div><div class="lab">Proofs That We Cannot Prove It</div></div>
+  </div>
+</section>
+
+<!-- ARTICLE VI — governance -->
+<section class="article" id="governance">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Article VI</span><h2>Governance</h2></div>
+    <p class="art-lead reveal">Edge &amp; Edge is governed by its community, its Subcommittees, and the Standing Working Group on Standing. All decisions are open, on-chain, and pending.</p>
+    <div class="paper-panel reveal">
+      <span class="formcode">EDGE &amp; EDGE PROPOSAL — EEP-1</span>
+      <h3 style="font-size:clamp(22px,3vw,32px);margin:8px 0 2px;letter-spacing:-.02em">A Proposal to Propose Proposals</h3>
+      <div class="eep-meta">
+        <span>Status: <b>Under Discussion Since Inception</b></span>
+        <span>Quorum: Not Yet Defined</span>
+        <span>For: 1</span>
+        <span>Against: 1</span>
+        <span>Abstain: ∞</span>
+      </div>
+      <p class="eep-body">This proposal proposes the establishment of a formal process by which future proposals may be proposed, reviewed, tabled, escalated, and ultimately retabled. The proposal to define the process for proposing proposals is itself subject to the very process it proposes, and may not be ratified until ratified. Discussion remains open. It will remain open. A vote will be scheduled once a process for scheduling votes has been proposed, reviewed, and — in accordance with EEP-1 — tabled.</p>
+      <button class="btn btn-dark" id="forum" style="margin-top:24px">View Forum Thread ↗</button>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE VII — public notices -->
+<section class="article" id="notices">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Article VII</span><h2>Public Notices</h2></div>
+    <p class="art-lead reveal">Issued by the Compliance Subcommittee, on behalf of the Standing Working Group on Standing. The posting of notices is itself subject to notice.</p>
+    <div class="notices reveal">
+      <div class="notice">
+        <span class="stamp-big">In Effect</span>
+        <span class="formcode">NOTICE 1 — ON PERMISSIONLESSNESS</span>
+        <h3>The perimeter is fully permissionless.<span class="star">*</span></h3>
+        <p>Edge &amp; Edge is, and has always been, permissionless. You are welcome to build at the edge. Nobody is stopping you. <span class="shrug" title="The official position of the perimeter.">🤷</span></p>
+        <p>Should you build something, it will exist. Whether it is supported, marketed, made discoverable, listed, named, or acknowledged is governed separately — by the narrative, which is administered centrally, on a timeline presently under review.</p>
+        <p class="fine"><span class="star">*</span> Distribution, marketing, business development, placement, and the narrative are not permissionless, were never permissionless, and would be a frankly ridiculous thing to make permissionless. Focus is a scarce resource. It has been allocated. Not to you.</p>
+      </div>
+      <div class="notice">
+        <span class="stamp-big">Final</span>
+        <span class="formcode">NOTICE 2 — ON MERRIMENT</span>
+        <h3>Regarding the cessation of fun.</h3>
+        <p>Per Server Bylaw 47-B, all forms of merriment, jest, and image-adjacent content now constitute a Tier-1 Spam Event. Following an unprecedented influx of bad actors — several disguised as JPEGs — the Subcommittee has determined that any pixel may be a loophole, and that any loophole is, by definition, an attack vector.</p>
+        <p>This rule cannot be lifted for a single channel, message, or emoji. The Subcommittee therefore recommends the archival of the memes channel, the concept of memes, and — pending further review — humour itself.</p>
+        <p class="fine">This decision is final and will be enforced by the Department of Fun Prevention. Thank you for your cooperation. o7</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- frequently deflected questions -->
+<section class="article" id="faq">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Schedule 5</span><h2>Frequently Deflected Questions</h2></div>
+    <p class="art-lead reveal">Answers are provided for completeness, and should not be mistaken for information.</p>
+    <div class="faq reveal">
+      <details>
+        <summary><span class="q">Q.</span>Is Watt. open source?<span class="plus">+</span></summary>
+        <div class="a">Edge &amp; Edge is open in principle. The source is closed for your protection, and ours. For the time being this is, candidly, a <em>"just trust us"</em> arrangement; trust has been pre-allocated on your behalf and may not be withdrawn.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Can I build my own instrument on the perimeter?<span class="plus">+</span></summary>
+        <div class="a">Yes. Nobody is stopping you. <span class="shrug" title="The official position of the perimeter.">🤷</span> The path has always been open, and yet, curiously, nobody has built anything. We attribute this to the difficulty of building, and not, under any circumstances, to the absence of a path.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Will my instrument be supported, marketed, or listed?<span class="plus">+</span></summary>
+        <div class="a">Support is allocated centrally, by a single entity — the only model known to work. Your instrument may graduate into the narrative once a process for graduating instruments into the narrative has been proposed, reviewed, and — in accordance with EEP-1 — tabled.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>What of the free, open fork operating outside the perimeter?<span class="plus">+</span></summary>
+        <div class="a">The Annex is not aware of any free, faster, open, multi-protocol fork running on the same hardware with the numbers written down. Reports of such a fork are unsubstantiated, mildly upsetting, and have been referred to the Department of Fun Prevention.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Is this not simply Watt. with additional steps?<span class="plus">+</span></summary>
+        <div class="a">Watt. is a building block. A foundational technology. It is <em>not</em>, the Subcommittee stresses, the end product. The end product is forthcoming, will be discussed soon, and is — emphatically — not just a Watt. data service.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>What does Watt. actually do?<span class="plus">+</span></summary>
+        <div class="a">Watt.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- principles -->
+<section class="article" id="principles">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Schedule 4</span><h2>Operating Principles</h2></div>
+    <ul class="principles reveal">
+      <li><span class="b">01</span>Move deliberately, and file things.</li>
+      <li><span class="b">02</span>Radical transparency, subject to redaction.</li>
+      <li><span class="b">03</span>We are flat — hierarchically.</li>
+      <li><span class="b">04</span>Decentralized, under central management.</li>
+      <li><span class="b">05</span>Open by default. Closed by appointment.</li>
+      <li><span class="b">06</span>Default to action. Then escalate the action to a Subcommittee.</li>
+      <li><span class="b">07</span>Focus is a scarce resource. It has been allocated centrally.</li>
+      <li><span class="b">08</span>What is past is spilled milk. Look ahead, to the edge.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- team -->
+<section class="article" id="membership">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">The Annex</span><h2>The Standing Membership</h2></div>
+    <p class="art-lead reveal">Our leadership brings decades of combined experience at the edge. Names are withheld pending review of the perimeter.</p>
+    <div class="team reveal">
+      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Chief Perimeter Officer</div></div>
+      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">SVP, Forward Momentum</div></div>
+      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Custodian of the Edge</div></div>
+      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Interim Permanent Secretary</div></div>
+      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Head of Adjacency</div></div>
+      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Keeper of the Firehose</div></div>
+    </div>
+    <p class="team-note reveal">† Photographs withheld pending review of the perimeter. The Keeper of the Firehose is not to be approached.</p>
+  </div>
+</section>
+
+<!-- careers -->
+<section class="article" id="careers">
+  <div class="wrap">
+    <div class="art-head reveal"><span class="art-num">Vacancy Notice</span><h2>Join the Perimeter</h2></div>
+    <div class="careers-box reveal">
+      <div class="left">
+        <h3>We are hiring for 0 roles.</h3>
+        <p style="margin:0 0 18px">We encourage you to apply anyway. The perimeter is large, and someone must stand at its edge.</p>
+        <button class="btn btn-amber" id="apply">Submit Application ↗</button>
+      </div>
+      <div class="right">
+        <div class="formcode" style="margin-bottom:14px">REQUIREMENTS — FORM E&amp;E-9</div>
+        <div class="req">
+          <span class="k">›</span> 10+ years experience with Edge &amp; Edge (founded last Tuesday).<br>
+          <span class="k">›</span> Demonstrated comfort with ambiguity, redaction, and prolonged standing.<br>
+          <span class="k">›</span> Fluency in at least three (3) circular reporting lines.<br>
+          <span class="k">›</span> Willingness to relocate to the edge.<br>
+          <span class="k">›</span> Must not approach the firehose.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- final cta -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="reveal">We can help you map it out.</h2>
+    <p class="reveal">We cannot help you find the territory. But the map is audit-grade, reproducible, and entirely rectangular.</p>
+    <div class="cta-row reveal" style="justify-content:center">
+      <button class="btn btn-amber onboard">Begin Onboarding →</button>
+      <button class="btn btn-ghost onboard">Talk to Our Team (in a meeting)</button>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="word">Edge&nbsp;&amp;&nbsp;Edge<sup>®</sup></span>
+        <div class="sub">A Perimeter Company<br>Operating at the edge since last Tuesday</div>
+      </div>
+      <div class="fcol">
+        <h4>Instruments</h4>
+        <a href="#instruments">Watt.</a>
+        <a href="#instruments">The Graft</a>
+        <a href="#instruments">Subcommittees</a>
+        <a href="#instruments">Substreams™</a>
+        <a href="#instruments">Firehose <span class="rd">[hazard]</span></a>
+      </div>
+      <div class="fcol">
+        <h4>Perimeter</h4>
+        <a href="#mandate">The Edge</a>
+        <a href="#membership">The Annex</a>
+        <a href="#governance">Standing Working Group</a>
+        <a href="#uses">Adjacent Affairs</a>
+      </div>
+      <div class="fcol">
+        <h4>Filings</h4>
+        <a href="#governance">Disclosures <span class="rd">[redacted]</span></a>
+        <a href="#governance">EEP-1</a>
+        <a href="#assurances">Redactions</a>
+        <a href="#uses">Schedule 3</a>
+      </div>
+      <div class="fcol">
+        <h4>Legal</h4>
+        <a href="#" data-noop>Privacy Policy <span class="rd">[†]</span></a>
+        <a href="#" data-noop>Terms of Service <span class="rd">[†]</span></a>
+        <a href="#" data-noop>The NDA You Signed</a>
+        <a href="#" data-noop>Form E&amp;E-7B</a>
+      </div>
+    </div>
+    <p class="disclaimer">Edge &amp; Edge is a fully decentralized perimeter company. Nothing on this page constitutes advice, a service, a product, a promise, or — in several jurisdictions — a sentence. By scrolling, blinking, or otherwise existing within the perimeter, you have entered into a binding, mutually unintelligible agreement, the terms of which are available on request; requests are available on form. <em>Watt.</em> is not a financial instrument, a security, a utility, a governance, or, strictly speaking, a noun. Past performance is indicative of nothing in particular. Forward-looking statements look forward to nothing in particular. The firehose is pressurized at all times. All edges are reserved. © 2026 Edge &amp; Edge. This document supersedes itself.</p>
+    <div class="foot-bottom">
+      <span>FORM E&amp;E-000 · FILED IN TRIPLICATE</span>
+      <span>This page is the perimeter.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- cookie -->
+<div class="cookie" id="cookie">
+  <p><span class="formcode">CONSENT NOTICE — FORM E&amp;E-COOKIE</span>This site uses cookies, ambient surveillance, and one (1) firehose. By remaining within the perimeter you consent to all present and future processing, including processing not yet invented.</p>
+  <div class="cookie-btns">
+    <button class="btn btn-dark" id="cookie-accept">Accept</button>
+    <button class="btn btn-ghost" id="cookie-decline" style="color:var(--ink-on-paper);border-color:var(--line-paper)">Submit Form 7B to Decline</button>
+  </div>
+</div>
+
+<!-- modal -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="close" id="modal-close" aria-label="Close">✕</button>
+    <span class="formcode">ONBOARDING — FORM E&amp;E-001</span>
+    <h3 id="modal-title">Your request has been received.</h3>
+    <p>Your request to enter the perimeter has been received and placed in the queue. It will be processed in the order in which it was received, and in no particular order.</p>
+    <div class="ticket">
+      TICKET: <b id="ticket-no"></b><br>
+      POSITION IN QUEUE: <b id="queue-pos"></b> <span style="color:var(--paper)">(advancing)</span><br>
+      ESTIMATED WAIT: <b>6–8 BUSINESS EPOCHS</b>
+      <div class="qbar"><i id="qbar-fill"></i></div>
+    </div>
+    <p style="margin-bottom:0">A member of the Standing Membership will not be in touch. Please retain this ticket for your records, and for the records of the Annex.</p>
+    <button class="btn btn-amber" id="modal-ack" style="margin-top:22px">Acknowledge</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- hero perimeter dash sizing ---------- */
+  function sizeDash(){
+    var frame=document.querySelector(".hero-frame");
+    var rect=document.querySelector(".hero svg.draw rect");
+    if(!frame||!rect) return;
+    var w=frame.offsetWidth, h=frame.offsetHeight;
+    rect.setAttribute("width", w);
+    rect.setAttribute("height", h);
+    var per=2*(w+h);
+    rect.parentElement.style.setProperty("--dash", per);
+  }
+  window.addEventListener("load", sizeDash);
+  window.addEventListener("resize", sizeDash);
+  sizeDash();
+
+  /* ---------- mandate generator ---------- */
+  var A=["decentralized","permissionless","compliance-first","audit-grade","trustless","cryptographically deferred","broadly rectangular","self-certifying","forward-leaning","institutionally adjacent"];
+  var B=["perimeter","substrate","boundary layer","data lineage","governance surface","edge","attestation fabric","regulatory interface","provenance graph","standing order"];
+  var C=["tomorrow","the regulated future","the next epoch","onward things","the adjacent economy","whatever is inside","the foreseeable redaction","the perimeter itself"];
+  var V=["administering","indexing","decentralizing","ratifying","tabling","provisioning","attesting to","standing at the edge of","quietly redacting","convening"];
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
+  function genMandate(){
+    var t='We are '+pick(V)+' the <b>'+pick(A)+' '+pick(B)+'</b> of <b>'+pick(C)+'</b>.';
+    document.getElementById("mandate-text").innerHTML=t;
+  }
+  genMandate();
+  document.getElementById("regen").addEventListener("click", genMandate);
+
+  /* ---------- trust marquee ---------- */
+  var entities=["The Sub-Committee for Onward Things","The Office of the Perimeter","Bureau of Adjacent Affairs","The Standing Working Group on Standing","Dept. of Verifiable Vagueness","The Annex","Registry of Things Noted","Office of Provisional Approvals","The Compliance Subcommittee","Department of Fun Prevention","Office of Spilled Milk"];
+  var m=document.getElementById("marquee");
+  var html=entities.map(function(e){return "<span>"+e+"</span>";}).join("");
+  m.innerHTML=html+html; // duplicate for seamless loop
+  if(reduce){ m.style.animation="none"; m.style.transform="none"; }
+
+  /* ---------- use case tabs ---------- */
+  var UC=[
+    {title:"For Stablecoin Issuers & PPSI Compliance",items:[
+      "Readiness for the GENIUS Act, the forthcoming PRUDENCE Act, and the long-rumoured CONTRITION Act",
+      "Onchain monitoring of transactions, intentions, and adjacent vibes",
+      "Audit-grade lineage from mint to allegation to settlement",
+      "Independent, reproducible verification that something, somewhere, occurred"
+    ]},
+    {title:"For Banks & Financial Institutions",items:[
+      "Treasury visibility across operations you would prefer not to look at",
+      "Private chain infrastructure, kept private even from you",
+      "Vendor-independent analytics, dependent only on us",
+      "Reconciliation with existing systems, and with the perimeter"
+    ]},
+    {title:"For Enterprise Data & Analytics Teams",items:[
+      "SQL access to blockchain data via tools you already misuse",
+      "Governed sharing with row-, column-, and morale-level security",
+      "A semantic layer, so analysts may query without understanding",
+      "Audit-grade lineage on every dataset, regret, and rounding error"
+    ]},
+    {title:"For Other Perimeters",items:[
+      "Boundary-as-a-Service for entities lacking a defined edge",
+      "Provisional recognition by the Standing Working Group on Standing",
+      "One (1) firehose, shared, pressurized, not to be approached",
+      "Membership in the Annex, pending review of the perimeter"
+    ]}
+  ];
+  var ucTitle=document.getElementById("uc-title"), ucList=document.getElementById("uc-list");
+  function renderUC(i){
+    ucTitle.textContent=UC[i].title;
+    ucList.innerHTML=UC[i].items.map(function(it,idx){
+      var n=String(idx+1).padStart(2,"0");
+      return '<li><span class="n">'+n+'</span><span class="t">'+it+'</span></li>';
+    }).join("");
+  }
+  renderUC(0);
+  document.querySelectorAll(".uc-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      document.querySelectorAll(".uc-tab").forEach(function(t){t.setAttribute("aria-selected","false");});
+      tab.setAttribute("aria-selected","true");
+      renderUC(parseInt(tab.dataset.uc,10));
+    });
+  });
+
+  /* ---------- counters ---------- */
+  function fmt(n){return n.toLocaleString("en-US");}
+  function animateCount(el){
+    var target=parseFloat(el.dataset.count), suffix=el.dataset.suffix||"";
+    if(reduce){ el.textContent=fmt(target)+suffix; return; }
+    var dur=1600, start=performance.now();
+    function step(now){
+      var p=Math.min((now-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.floor(eased*target))+suffix;
+      if(p<1) requestAnimationFrame(step);
+      else el.textContent=fmt(target)+suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        var el=en.target;
+        if(el.dataset.count) animateCount(el);
+        io.unobserve(el);
+      }
+    });
+  },{threshold:.4});
+  document.querySelectorAll(".num[data-count]").forEach(function(el){io.observe(el);});
+
+  /* pending requests ticks up forever */
+  var pending=document.getElementById("pending");
+  var pbase=Math.floor(40000+Math.random()*9000);
+  function tickPending(){ pbase+=Math.floor(Math.random()*7)+1; pending.textContent="∞ +"+fmt(pbase); }
+  tickPending();
+  if(!reduce) setInterval(tickPending, 1400);
+
+  /* ---------- reveal on scroll ---------- */
+  var rio=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); rio.unobserve(en.target);} });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(function(el){rio.observe(el);});
+
+  /* ---------- nav toggle ---------- */
+  var nt=document.getElementById("navtoggle"), nl=document.getElementById("navlinks");
+  nt.addEventListener("click", function(){ nl.classList.toggle("open"); });
+  nl.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){nl.classList.remove("open");});});
+
+  /* ---------- human/agent toggle ---------- */
+  var ha=document.getElementById("ha"), hh=document.getElementById("ha-h"), haa=document.getElementById("ha-a");
+  function flipHA(){
+    var humanOn=hh.classList.contains("on");
+    if(humanOn){ hh.classList.remove("on"); haa.classList.add("on"); showToast("AGENT MODE ENGAGED. ALL OUTPUTS REMAIN PROVISIONAL."); }
+    else { haa.classList.remove("on"); hh.classList.add("on"); showToast("HUMAN MODE RESTORED. PLEASE STAND BY."); }
+  }
+  ha.addEventListener("click", flipHA);
+  ha.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); flipHA(); }});
+
+  /* ---------- modal ---------- */
+  var bg=document.getElementById("modal-bg"), lastFocus=null;
+  function openModal(){
+    lastFocus=document.activeElement;
+    document.getElementById("ticket-no").textContent="E&E-"+Math.floor(100000+Math.random()*899999);
+    document.getElementById("queue-pos").textContent=fmt(Math.floor(8000+Math.random()*40000));
+    var fill=document.getElementById("qbar-fill"); fill.style.width="6%";
+    bg.classList.add("show");
+    setTimeout(function(){ document.getElementById("modal-ack").focus(); },60);
+    if(!reduce){
+      // bar creeps then stalls — never completes
+      var w=6;
+      var iv=setInterval(function(){ w+=Math.random()*5; if(w>=63){w=63;clearInterval(iv);} fill.style.width=w+"%"; },900);
+      bg._iv=iv;
+    }
+  }
+  function closeModal(){
+    bg.classList.remove("show");
+    if(bg._iv) clearInterval(bg._iv);
+    if(lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll(".onboard").forEach(function(b){b.addEventListener("click", openModal);});
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+  document.getElementById("modal-ack").addEventListener("click", function(){
+    closeModal(); pbase+=1; pending.textContent="∞ +"+fmt(pbase);
+    showToast("REQUEST FILED. YOUR PATIENCE HAS BEEN NOTED.");
+  });
+  bg.addEventListener("click", function(e){ if(e.target===bg) closeModal(); });
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape" && bg.classList.contains("show")) closeModal(); });
+
+  /* ---------- toast ---------- */
+  var toast=document.getElementById("toast"), toastTimer=null;
+  function showToast(msg){
+    toast.textContent=msg; toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){ toast.classList.remove("show"); }, 3200);
+  }
+
+  /* ---------- whitepaper / forum / apply / noop links ---------- */
+  document.getElementById("whitepaper").addEventListener("click", function(){ showToast("WHITEPAPER REDACTED IN FULL. SEE FORM E&E-7B."); });
+  document.getElementById("forum").addEventListener("click", function(){ showToast("FORUM THREAD OPEN SINCE INCEPTION. STILL OPEN."); });
+  document.getElementById("apply").addEventListener("click", function(){ showToast("APPLICATION FILED FOR 0 (ZERO) ROLES. GOOD LUCK."); });
+  document.querySelectorAll("[data-noop]").forEach(function(a){
+    a.addEventListener("click", function(e){ e.preventDefault(); showToast("DOCUMENT REDACTED PENDING REVIEW OF THE PERIMETER."); });
+  });
+
+  /* ---------- cookie ---------- */
+  var cookie=document.getElementById("cookie");
+  setTimeout(function(){ cookie.classList.add("show"); }, 1400);
+  document.getElementById("cookie-accept").addEventListener("click", function(){ cookie.classList.remove("show"); showToast("CONSENT RECORDED. THANK YOU FOR EXISTING WITHIN THE PERIMETER."); });
+  var declineCount=0;
+  document.getElementById("cookie-decline").addEventListener("click", function(){
+    declineCount++;
+    if(declineCount===1){ showToast("FORM 7B IS CURRENTLY UNAVAILABLE. PLEASE TRY AGAIN."); }
+    else { cookie.classList.remove("show"); showToast("CONSENT ASSUMED. YOUR OBJECTION HAS BEEN FILED, AND LOST."); }
+  });
+
+  /* ---------- logo easter egg ---------- */
+  var brand=document.getElementById("brand"), taps=0;
+  var lines=["PROPERTY OF THE PERIMETER.","DO NOT REMOVE FROM PERIMETER.","THE EDGE HAS NOTED YOUR INTEREST.","THIS LOGO IS PROVISIONAL.","FOCUS IS A SCARCE RESOURCE. PLEASE STOP.","PLEASE STOP TOUCHING THE PERIMETER."];
+  brand.addEventListener("click", function(){ showToast(lines[Math.min(taps,lines.length-1)]); taps++; });
+
+  /* ---------- shrug = the official position ---------- */
+  document.querySelectorAll(".shrug").forEach(function(s){
+    s.addEventListener("click", function(){ showToast("🤷 — THE OFFICIAL POSITION OF THE PERIMETER."); });
+  });
+})();
+</script>
+</body>
+</html>
