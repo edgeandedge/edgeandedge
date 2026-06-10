@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — Edge &amp; Edge</title>
+<meta name="description" content="We are hiring for 0 roles. We encourage you to apply anyway. The perimeter is large, and someone must stand at its edge.">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Edge &amp; Edge">
+<meta property="og:url" content="https://edgeandedgeandedge.com/careers">
+<meta property="og:title" content="Careers — Join the Perimeter">
+<meta property="og:description" content="We are hiring for 0 roles. We encourage you to apply anyway. Relocation to the edge required. Do not approach the firehose.">
+<meta property="og:image" content="https://edgeandedgeandedge.com/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1622;--ink-2:#F7F4EC;--paper:#FFFFFF;--paper-2:#EFEAE2;
+    --amber:#0E8A7B;--amber-deep:#0B6E62;--stamp:#1E5C97;
+    --line:#E3DDCF;--text:#3C4350;--text-bright:#0E1622;--text-fade:#8A8779;
+    --ink-on-paper:#0E1622;--fade-on-paper:#6E6A5E;
+    --maxw:980px;--gut:clamp(20px,5vw,56px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper-2);color:var(--text);font-family:"Public Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  ::selection{background:var(--amber);color:var(--paper)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+  .formcode{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--fade-on-paper);text-transform:uppercase}
+
+  .reg{background:var(--ink);color:var(--paper);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;gap:16px;padding:7px var(--gut);flex-wrap:wrap}
+
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(245,242,234,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;flex-direction:column;line-height:1;text-decoration:none}
+  .brand .word{font-family:"Archivo",sans-serif;font-weight:900;font-size:20px;letter-spacing:-.01em;color:var(--text-bright);display:flex;align-items:center;gap:5px}
+  .brand .word sup{font-size:9px;color:var(--amber);font-weight:600;top:-.7em}
+  .brand .sub{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.18em;color:var(--text-fade);margin-top:5px;text-transform:uppercase}
+  .back{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--text);text-decoration:none;border:1px solid var(--line);padding:8px 13px;border-radius:2px;transition:border-color .15s,color .15s}
+  .back:hover{border-color:var(--amber);color:var(--amber)}
+
+  .perimeter{position:relative}
+  .tick{position:absolute;width:18px;height:18px;pointer-events:none}
+  .tick::before,.tick::after{content:"";position:absolute;background:var(--amber)}
+  .tick::before{width:18px;height:2px;top:0;left:0}.tick::after{width:2px;height:18px;top:0;left:0}
+  .tick.tr{right:0;transform:scaleX(-1)}.tick.bl{bottom:0;transform:scaleY(-1)}.tick.br{right:0;bottom:0;transform:scale(-1,-1)}
+
+  main{padding:clamp(40px,7vw,80px) 0 60px}
+  .hero-frame{position:relative;border:1px dashed var(--line);padding:clamp(26px,5vw,52px);background:var(--paper);border-radius:4px;box-shadow:0 18px 48px -30px rgba(14,22,34,.22)}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:.6em}
+  .eyebrow::before{content:"";width:9px;height:9px;background:var(--amber);transform:rotate(45deg)}
+  h1{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(32px,6vw,64px);line-height:.98;letter-spacing:-.03em;color:var(--text-bright);margin:16px 0 16px;max-width:16ch}
+  .lead{font-size:clamp(16px,1.8vw,20px);max-width:60ch;color:var(--text);margin:0 0 10px}
+  .lead em{color:var(--text-bright);font-style:italic}
+  .headline-stat{display:flex;gap:30px;flex-wrap:wrap;margin-top:26px;border-top:1px solid var(--line);padding-top:24px}
+  .hs{display:flex;flex-direction:column}
+  .hs .n{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(30px,4vw,44px);color:var(--amber);line-height:1;letter-spacing:-.02em}
+  .hs .l{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-fade);margin-top:8px}
+
+  .btn{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;letter-spacing:.04em;border:none;cursor:pointer;padding:12px 18px;border-radius:2px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:transform .12s,background .15s,color .15s,border-color .15s}
+  .btn-amber{background:var(--amber);color:var(--paper)}
+  .btn-amber:hover{background:#11A593;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--text-bright);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+
+  section.block{margin-top:clamp(40px,6vw,68px)}
+  .block h2{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,38px);letter-spacing:-.02em;color:var(--text-bright);margin:0 0 6px}
+  .block .sub{color:var(--text);margin:0 0 26px;max-width:64ch}
+  .block .sub em{color:var(--text-bright);font-style:italic}
+
+  /* role cards */
+  .roles{display:grid;gap:14px}
+  .role{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:24px 24px;transition:border-color .18s,transform .18s;position:relative;overflow:hidden}
+  .role:hover{border-color:var(--amber-deep);transform:translateY(-2px)}
+  .role .rtop{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+  .role h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:21px;letter-spacing:-.01em;color:var(--text-bright);margin:0}
+  .role .meta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-fade);margin-top:6px;display:flex;gap:14px;flex-wrap:wrap}
+  .role .meta .dot{color:var(--line)}
+  .role p{font-size:14.5px;color:var(--text);margin:14px 0 0;max-width:70ch}
+  .role .open{flex-shrink:0;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:5px 12px;white-space:nowrap}
+  .role .open.hazard{color:var(--stamp);border-color:var(--stamp)}
+  .role .open.filled{color:var(--fade-on-paper);border-color:var(--line)}
+  .role .applybar{margin-top:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+  .role .applybar .req{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--fade-on-paper)}
+  .role .applybar .req b{color:var(--text-bright)}
+
+  /* perks */
+  .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .perk{background:var(--ink-2);border:1px solid var(--line);border-radius:4px;padding:22px 20px}
+  .perk .ic{font-size:20px;margin-bottom:10px}
+  .perk h4{font-family:"Archivo",sans-serif;font-weight:700;font-size:16px;color:var(--text-bright);margin:0 0 6px;letter-spacing:-.01em}
+  .perk p{font-size:13.5px;color:var(--text);margin:0}
+  .perk p a{color:var(--amber);text-decoration:underline;text-underline-offset:2px}
+
+  /* process */
+  .process{list-style:none;margin:0;padding:0;counter-reset:step}
+  .process li{display:flex;gap:18px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}
+  .process li::before{counter-increment:step;content:counter(step,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--amber);flex-shrink:0;width:34px}
+  .process li .pt{font-family:"Archivo",sans-serif;font-weight:700;font-size:16.5px;color:var(--text-bright);width:230px;flex-shrink:0;letter-spacing:-.01em}
+  .process li .pd{font-size:14.5px;color:var(--text)}
+  @media(max-width:680px){.process li{flex-wrap:wrap}.process li .pt{width:auto}}
+
+  details{border-top:1px solid var(--line)}
+  details:last-child{border-bottom:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;padding:18px 0;display:flex;gap:14px;align-items:center;font-family:"Archivo",sans-serif;font-weight:600;font-size:clamp(15px,1.9vw,19px);color:var(--text-bright);letter-spacing:-.01em}
+  summary::-webkit-details-marker{display:none}
+  summary .q{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--amber)}
+  summary .plus{margin-left:auto;font-family:"IBM Plex Mono",monospace;color:var(--amber);font-size:20px;transition:transform .2s}
+  details[open] summary .plus{transform:rotate(45deg)}
+  .ans{padding:0 0 22px 38px;font-size:15px;color:var(--text);max-width:72ch;line-height:1.65}
+  .ans em{color:var(--text-bright);font-style:italic}
+
+  .final{text-align:center;padding:clamp(50px,8vw,90px) 0 10px}
+  .final h2{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(26px,4.6vw,52px);letter-spacing:-.03em;line-height:1;color:var(--text-bright);margin:0 auto 16px;max-width:18ch}
+  .final p{font-size:clamp(16px,1.8vw,19px);color:var(--text);max-width:46ch;margin:0 auto 28px}
+
+  footer{margin-top:clamp(40px,6vw,70px);border-top:1px solid var(--line);background:var(--ink-2)}
+  .disclaimer{font-size:12.5px;line-height:1.7;color:var(--text-fade);padding:26px 0;border-bottom:1px solid var(--line)}
+  .foot{padding:30px 0;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-fade);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);border:1px solid var(--amber-deep);padding:13px 20px;border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;z-index:120;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;letter-spacing:.04em;max-width:90vw;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:820px){.perks{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.perks{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="reg">
+  <b>FORM&nbsp;E&amp;E-9 · VACANCY NOTICE · NOW NOT HIRING, ENTHUSIASTICALLY</b>
+  <span>OPEN ROLES: 0</span>
+</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">
+      <span class="word">Edge&nbsp;&amp;&nbsp;Edge<sup>®</sup></span>
+      <span class="sub">A Perimeter Company · Est. Last Tuesday</span>
+    </a>
+    <a class="back" href="/">← Return to the Perimeter</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero-frame perimeter">
+      <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+      <span class="eyebrow">VACANCY NOTICE — FORM E&amp;E-9</span>
+      <h1>Join the Perimeter.</h1>
+      <p class="lead">We are hiring for <em>0 roles</em>. We encourage you to apply anyway. The perimeter is large, and someone must stand at its edge.</p>
+      <p class="lead">Asking for a friend? Your friend is warmly encouraged to apply. The friend will not hear back — but the friend will <em>have applied</em>, which is its own reward, and is, in any case, non-refundable.</p>
+      <div class="headline-stat">
+        <div class="hs"><span class="n">0</span><span class="l">Open Roles</span></div>
+        <div class="hs"><span class="n">∞</span><span class="l">Applications Encouraged</span></div>
+        <div class="hs"><span class="n">6–8</span><span class="l">Epochs to Hear Back (You Won't)</span></div>
+        <div class="hs"><span class="n">1</span><span class="l">Firehose (Do Not Approach)</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-amber" id="apply-top">Submit Application ↗</button>
+        <a class="btn btn-ghost" href="#roles">View 0 Open Roles ↓</a>
+      </div>
+    </div>
+
+    <!-- open roles -->
+    <section class="block" id="roles">
+      <h2>Open Positions</h2>
+      <p class="sub">All positions are currently filled, unfilled, or — in the preferred terminology of the Annex — <em>provisionally vacant</em>. Each has 0 openings. We review every application, in no particular order, and never.</p>
+      <div class="roles" id="rolelist"></div>
+    </section>
+
+    <!-- perks -->
+    <section class="block">
+      <h2>Perks &amp; Benefits</h2>
+      <p class="sub">A comprehensive package, broadly rectangular, available pending review of the perimeter.</p>
+      <div class="perks">
+        <div class="perk"><div class="ic">🏖️</div><h4>Unlimited PTO</h4><p>Take as much time off as you like. It will not be observable, and neither, frankly, will you.</p></div>
+        <div class="perk"><div class="ic">📈</div><h4>Generous Equity</h4><p>Shares vest at the edge and settle in 6–8 business epochs. Track yours at the <a href="/redeem-share">redemption portal</a>.</p></div>
+        <div class="perk"><div class="ic">🌍</div><h4>Fully Remote</h4><p>Work from anywhere — provided anywhere is the edge. Relocation to the edge is required and non-negotiable.</p></div>
+        <div class="perk"><div class="ic">🤐</div><h4>Comprehensive Redaction</h4><p>Industry-leading coverage. Your salary, title, and responsibilities will be redacted, for your protection.</p></div>
+        <div class="perk"><div class="ic">🔥</div><h4>Firehose Access</h4><p>All employees receive complimentary access to the firehose. Access has been revoked. Do not approach the firehose.</p></div>
+        <div class="perk"><div class="ic">🗂️</div><h4>Subcommittee Membership</h4><p>Automatic enrolment in at least three (3) Subcommittees, each convened to review the others.</p></div>
+      </div>
+    </section>
+
+    <!-- hiring process -->
+    <section class="block">
+      <h2>The Hiring Process</h2>
+      <p class="sub">A rigorous, transparent, seven-stage process, ratified by the Standing Working Group on Standing. It has a defined beginning and no defined end.</p>
+      <ol class="process">
+        <li><span class="pt">Application</span><span class="pd">Submit Form E&amp;E-9, in triplicate, in person, to the Annex. The Annex is currently unobservable.</span></li>
+        <li><span class="pt">Acknowledgement</span><span class="pd">A member of the Standing Membership will not be in touch. Please retain your confirmation for your records, and for ours.</span></li>
+        <li><span class="pt">Subcommittee Screening</span><span class="pd">Your application is escalated to a Subcommittee, which convenes a Subcommittee to assess whether a Subcommittee is warranted.</span></li>
+        <li><span class="pt">The Loop Interview</span><span class="pd">A literal loop. You will go around it. It does not have an exit, and this is considered a feature of the role.</span></li>
+        <li><span class="pt">Reference Check</span><span class="pd">We contact your references. Their responses are redacted before we read them, for everyone's protection.</span></li>
+        <li><span class="pt">The Offer</span><span class="pd">An offer is proposed, reviewed, and — in accordance with EEP-1 — tabled. It may not be extended until extended.</span></li>
+        <li><span class="pt">Onboarding</span><span class="pd">You are onboarded immediately upon resolution of the preceding step. The preceding step does not resolve.</span></li>
+      </ol>
+    </section>
+
+    <!-- faq -->
+    <section class="block">
+      <h2>Frequently Deflected Questions</h2>
+      <p class="sub">Answers are provided for completeness, and should not be mistaken for information.</p>
+      <details open>
+        <summary><span class="q">Q.</span>Is it hiring? (asking for a friend)<span class="plus">+</span></summary>
+        <div class="ans">Yes — for 0 roles. Your friend should apply at once. We will review your friend's application with the seriousness it deserves, which is to say it will be received, noted, placed in the queue, and processed in no particular order. The friend will not hear back. The friend will, however, have applied.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>If there are 0 roles, why are you accepting applications?<span class="plus">+</span></summary>
+        <div class="ans">Because the path has always been open. Nobody is stopping you. <span title="The official position of the perimeter.">🤷</span> That no one has been hired we attribute to the difficulty of hiring, and not, under any circumstances, to the absence of a role.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>What's the compensation?<span class="plus">+</span></summary>
+        <div class="ans">Competitive, redacted, and broadly rectangular. Cash compensation is provisional; equity vests at the edge and is available for inspection at the <a href="/redeem-share" style="color:var(--amber);text-decoration:underline;text-underline-offset:2px">share redemption portal</a>, where it is currently being minted (63% complete).</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Do you sponsor visas?<span class="plus">+</span></summary>
+        <div class="ans">We sponsor relocation to the edge. The edge is not a jurisdiction, recognises no visas, and is, for tax purposes, <em>somewhere</em>. Bring a coat.</div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span>Can I speak to the team?<span class="plus">+</span></summary>
+        <div class="ans">The Standing Membership is happy to talk — in a meeting, which is being scheduled, pending a process for scheduling meetings being proposed, reviewed, and tabled. Do not, under any circumstances, approach the Keeper of the Firehose.</div>
+      </details>
+    </section>
+
+    <section class="final">
+      <h2>Someone must stand at the edge.</h2>
+      <p>It could be you. It could be anyone. It will, in all likelihood, be no one. Apply anyway.</p>
+      <button class="btn btn-amber" id="apply-bottom">Submit Application ↗</button>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <p class="disclaimer">This notice does not constitute an offer of employment, a description of an offer of employment, or a promise that employment exists, is forthcoming, or is — in several jurisdictions — legal. All roles are provisionally vacant and may be filled, unfilled, or redacted without notice. By applying, you enter into one (1) NDA and forfeit all claims to having heard back. Relocation to the edge is required. The firehose is pressurized at all times. All roles are reserved. © 2026 Edge &amp; Edge. This notice supersedes itself.</p>
+      <div class="foot">
+        <span>FORM E&amp;E-9 · FILED IN TRIPLICATE</span>
+        <span>We are not hiring. Please apply.</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var roles = [
+    {t:"Keeper of the Firehose", loc:"The Edge", type:"Permanent · Hazardous", tag:"hazard", open:"Do Not Apply",
+     d:"Maintain the firehose. Do not approach the firehose. These two instructions are not, the Subcommittee insists, in tension. Prior incumbents are unavailable for comment, and for most other things.",
+     req:"10+ yrs firehose-adjacency"},
+    {t:"Custodian of the Edge", loc:"The Edge", type:"Full-time · On-prem (the edge)", tag:"", open:"0 openings",
+     d:"Stand at the edge. Mind it. The edge is large and has, by our latest count, two sides; you will be responsible for both, and for a third should one be discovered.",
+     req:"Comfort with prolonged standing"},
+    {t:"SVP, Forward Momentum", loc:"Remote (the edge)", type:"Executive · Provisional", tag:"", open:"0 openings",
+     d:"Move things forward. Direction to be determined by a Subcommittee. Backward momentum, lateral momentum, and standing perfectly still are also acceptable, pending review.",
+     req:"Demonstrated momentum"},
+    {t:"Interim Permanent Secretary", loc:"The Annex", type:"Permanent · Interim", tag:"", open:"0 openings",
+     d:"Permanently interim. Take and file the minutes of meetings that have not yet occurred, will not occur, or occurred briefly and were quietly withdrawn.",
+     req:"Fluency in 3+ circular reporting lines"},
+    {t:"Head of Adjacency", loc:"Near the Edge", type:"Full-time", tag:"", open:"0 openings",
+     d:"Be near things. Record who said what, near whom, and whether — on balance — it counted. Report findings adjacently, never directly.",
+     req:"Tolerance for ambiguity & redaction"},
+    {t:"Narrative Allocation Lead", loc:"Central", type:"Full-time · Single-entity model", tag:"", open:"0 openings",
+     d:"Allocate focus centrally — the only model known to work. Focus is a scarce resource. It has been allocated. Not to you. Not to the applicant. To no one, specifically.",
+     req:"Ruthlessness re: focus"},
+    {t:"Chief Perimeter Officer", loc:"[ REDACTED ]", type:"Executive", tag:"filled", open:"Filled (by redaction)",
+     d:"This role has been filled. By whom, we are not at liberty to disclose. The incumbent's name, face, and existence are withheld pending review of the perimeter.",
+     req:"—"}
+  ];
+  var html = roles.map(function(r){
+    return '<div class="role">'+
+      '<div class="rtop"><div><h3>'+r.t+'</h3>'+
+      '<div class="meta"><span>'+r.loc+'</span><span class="dot">·</span><span>'+r.type+'</span></div></div>'+
+      '<span class="open '+r.tag+'">'+r.open+'</span></div>'+
+      '<p>'+r.d+'</p>'+
+      '<div class="applybar"><button class="btn btn-ghost role-apply" data-role="'+r.t+'">Apply Anyway →</button>'+
+      '<span class="req">REQ: <b>'+r.req+'</b> · relocation to the edge required</span></div>'+
+      '</div>';
+  }).join("");
+  document.getElementById("rolelist").innerHTML = html;
+
+  var toast = document.getElementById("toast"), tt=null;
+  function showToast(m){ toast.textContent=m; toast.classList.add("show"); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove("show");},3600); }
+
+  var generic = [
+    "APPLICATION FILED FOR 0 (ZERO) ROLES. GOOD LUCK.",
+    "RECEIVED. PLACED IN QUEUE. PROCESSED IN NO PARTICULAR ORDER.",
+    "YOUR ENTHUSIASM HAS BEEN NOTED AND FILED.",
+    "A MEMBER OF THE STANDING MEMBERSHIP WILL NOT BE IN TOUCH.",
+    "APPLICATION ESCALATED TO A SUBCOMMITTEE. THE SUBCOMMITTEE IS PENDING.",
+    "STILL 0 ROLES. THANK YOU FOR YOUR PERSISTENCE.",
+    "YOU HAVE NOW APPLIED MORE THAN ANYONE. THIS IS NOT A ROLE.",
+    "PLEASE STOP APPLYING TO THE PERIMETER."
+  ];
+  var c = 0;
+  function genericApply(){ showToast(generic[Math.min(c, generic.length-1)]); c++; }
+  document.getElementById("apply-top").addEventListener("click", genericApply);
+  document.getElementById("apply-bottom").addEventListener("click", genericApply);
+
+  document.querySelectorAll(".role-apply").forEach(function(b){
+    b.addEventListener("click", function(){
+      var role = b.getAttribute("data-role");
+      if(/Firehose/.test(role)){ showToast("⚠ DO NOT APPROACH THE FIREHOSE. YOUR APPLICATION HAS BEEN REFERRED TO SECURITY."); return; }
+      if(/Redacted|Chief/.test(role)){ showToast("THIS ROLE IS FILLED. BY WHOM, WE CANNOT SAY."); return; }
+      showToast("APPLICATION FOR “"+role.toUpperCase()+"” FILED. 0 OPENINGS REMAIN.");
+    });
+  });
+})();
+</script>
+</body>
+</html>
