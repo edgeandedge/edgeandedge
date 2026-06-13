@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post-Mortem: The Alert That Did Not Fire (At the Correct Severity) — Edge &amp; Edge</title>
+<meta name="description" content="We maintain several automated alerts. One did not trigger with the correct severity. We will conduct a post-mortem. The post-mortem is, itself, pending.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Edge &amp; Edge">
+<meta property="og:url" content="https://edgeandedgeandedge.com/blog/post-mortem">
+<meta property="og:title" content="Post-Mortem: The Alert That Did Not Fire (At the Correct Severity)">
+<meta property="og:description" content="We maintain several automated alerts. One did not trigger with the correct severity. The post-mortem is, itself, pending.">
+<meta property="og:image" content="https://edgeandedgeandedge.com/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/blog/style.css">
+</head>
+<body>
+
+<div class="reg">
+  <b>FORM&nbsp;E&amp;E-DISPATCH · INCIDENT REPORT · SEVERITY: TBD</b>
+  <span>STATUS: RESOLVED (PROVISIONALLY)</span>
+</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">
+      <span class="word">Edge&nbsp;&amp;&nbsp;Edge<sup>®</sup></span>
+      <span class="sub">A Perimeter Company · Est. Last Tuesday</span>
+    </a>
+    <a class="back" href="/blog">← All Dispatches</a>
+  </div>
+</header>
+
+<main>
+  <article class="wrap">
+    <header>
+      <div class="kicker"><span>Incident</span><span>·</span><span>9 June 2026</span><span>·</span><span>Ref. E&amp;E-DISPATCH-04</span></div>
+      <h1>Post-Mortem: The Alert That Did Not Fire (At the Correct Severity)</h1>
+      <p class="byline">Filed by <b>Operational Security</b>. Incident response was immediate: upon detection, we convened a Subcommittee.</p>
+    </header>
+
+    <div class="prose">
+      <p>On a recent date, the perimeter experienced an event. Service was, for a period, degraded; instruments held allocations but returned only bad responses, while reporting themselves <em>100% synced</em>. We wish to be transparent about what happened, to the extent that transparency is available.</p>
+
+      <h2>Summary</h2>
+      <p>We maintain several automated alerts. In this instance, the relevant alert <strong>did not trigger with the correct severity</strong>. The event was instead detected by humans, who noticed — as humans will — that nothing worked. We thank them, and have referred their initiative to a Subcommittee.</p>
+
+      <div class="stat">
+        <div class="s"><span class="n">3–4×</span><span class="l">times this has occurred in the last 6 months</span></div>
+        <div class="s"><span class="n">100%</span><span class="l">synced (while returning only bad responses)</span></div>
+        <div class="s"><span class="n">1</span><span class="l">notification sent prematurely, then retracted</span></div>
+      </div>
+
+      <h2>Timeline</h2>
+      <ul>
+        <li><strong>T+0</strong> — A fix is being deployed now.</li>
+        <li><strong>T+1h</strong> — The fix ran into some issues with the deploy. We were, candidly, a bit premature with the notification. Apologies.</li>
+        <li><strong>T+2h</strong> — They are working on the deployment now.</li>
+        <li><strong>T+4h</strong> — Deployment is going through now; things should be restored shortly. Sorry this took much longer than expected.</li>
+        <li><strong>T+∞</strong> — Resolved from our end as well. Thank you.</li>
+      </ul>
+
+      <blockquote>“Are there not automated alerts when things go wrong?”</blockquote>
+
+      <p>Yes. We have several automated alerts set up. Unfortunately, this one did not trigger with the correct severity. We will conduct a post-mortem and change alerts as needed. The post-mortem is, itself, pending, and has been assigned a severity, which did not trigger.</p>
+
+      <h2>Remediation</h2>
+      <p>Going forward, if you notice an issue with our stack, feel free to reach out directly. We have, in response to this incident, drafted a new alert. It is rigorous, threshold-based, and broadly rectangular. We are confident it will fire at the correct severity, on a future occasion, which we will detect by other means.</p>
+
+      <div class="editor-note"><b>Status:</b> Resolved from our end. If it is not resolved from your end, this is being tracked under a separate incident, which has not yet been detected.</div>
+    </div>
+
+    <div class="post-foot">
+      <div class="tags"><span>incident</span><span>alerts</span><span>severity: tbd</span><span>100% synced</span></div>
+      <a class="allposts" href="/blog">← All Dispatches from the Perimeter</a>
+    </div>
+  </article>
+
+  <footer>
+    <div class="wrap wide">
+      <p class="disclaimer">This post-mortem is provisional and pending. Timelines are illustrative and measured in business epochs. “Resolved” describes our end only. The perimeter maintains several alerts, the severities of which are under review. The firehose is pressurized at all times and is not, the Subcommittee confirms, the cause of this incident. © 2026 Edge &amp; Edge. This report supersedes itself.</p>
+      <div class="foot"><span>FORM E&amp;E-DISPATCH-04 · FILED IN TRIPLICATE</span><span><a href="/">This page is the perimeter.</a></span></div>
+    </div>
+  </footer>
+</main>
+</body>
+</html>
