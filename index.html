@@ -280,6 +280,11 @@
     color:var(--stamp);border:2px solid var(--stamp);border-radius:3px;padding:3px 7px;text-transform:uppercase;
   }
   .pcard:hover .seal{opacity:.85;transform:rotate(-9deg) scale(1)}
+  .pcard .src{display:block;margin-top:13px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
+  .pcard .src:hover{color:var(--amber-deep);text-decoration:underline}
+  .grid-foot{margin-top:22px;text-align:center}
+  .grid-foot a{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.04em;color:var(--amber);border:1px solid var(--line);border-radius:2px;padding:11px 18px;display:inline-block;transition:border-color .15s}
+  .grid-foot a:hover{border-color:var(--amber)}
 
   /* paper panel */
   .paper-panel{
@@ -531,7 +536,7 @@
       <a href="#membership">The Annex</a>
       <a href="/blog">Dispatches</a>
       <a href="/careers">Careers</a>
-      <a href="https://github.com/edgeandedge/watt" target="_blank" rel="noopener">Source<span class="pin">↗</span></a>
+      <a href="/open-source">Open Source<span class="pin">↗</span></a>
     </nav>
     <button class="btn btn-amber onboard">Begin Onboarding →</button>
     <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">MENU ☰</button>
@@ -610,6 +615,7 @@
         <span class="formcode">FORM E&amp;E-2.0</span>
         <p>A foundational building block — not, we stress, the end product. A permissionless boundary placed around an interior we are not at liberty to describe.</p>
         <span class="status">Provisionally Live</span>
+        <a class="src" href="https://github.com/edgeandedge/watt" target="_blank" rel="noopener">Source ↗</a>
       </div>
       <div class="pcard">
         <span class="seal">Reviewed</span>
@@ -646,7 +652,24 @@
         <p>A trustless ledger recording who said what, near whom, and whether — on balance — it counted.</p>
         <span class="status">Noted</span>
       </div>
+      <div class="pcard">
+        <span class="seal">Required</span>
+        <div class="name"><span class="amp">&amp;</span>persend™</div>
+        <span class="formcode">FORM E&amp;E-2.6</span>
+        <p>Send your funds to an ampersand. A payments protocol built on HTTP 402 — Payment Required, indefinitely. Settlement is provisional.</p>
+        <span class="status">Payment Required</span>
+        <a class="src" href="https://github.com/edgeandedge/ampersend-sdk" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="pcard">
+        <span class="seal">Eventual</span>
+        <div class="name">Eventuals™</div>
+        <span class="formcode">FORM E&amp;E-2.7</span>
+        <p>Values that are eventually consistent, eventually correct, and eventually archived. Resolution in 6–8 business epochs, or never.</p>
+        <span class="status">Eventually</span>
+        <a class="src" href="https://github.com/edgeandedge/eventuals" target="_blank" rel="noopener">Source ↗</a>
+      </div>
     </div>
+    <div class="grid-foot reveal"><a href="/open-source">Browse all instruments — open source<sup>*</sup> ↗</a></div>
   </div>
 </section>
 

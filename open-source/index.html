@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Source — Edge &amp; Edge</title>
+<meta name="description" content="The perimeter is radically transparent, subject to redaction. Every instrument is open source. Browse the source — the source is the perimeter.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Edge &amp; Edge">
+<meta property="og:url" content="https://edgeandedgeandedge.com/open-source">
+<meta property="og:title" content="Open Source — Edge &amp; Edge">
+<meta property="og:description" content="We maintain 10 repositories. 0 are maintained. Every instrument is open source* — browse the source.">
+<meta property="og:image" content="https://edgeandedgeandedge.com/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1622;--ink-2:#F7F4EC;--paper:#FFFFFF;--paper-2:#EFEAE2;
+    --amber:#0E8A7B;--amber-deep:#0B6E62;--stamp:#1E5C97;
+    --line:#E3DDCF;--text:#3C4350;--text-bright:#0E1622;--text-fade:#8A8779;
+    --ink-on-paper:#0E1622;--fade-on-paper:#6E6A5E;
+    --maxw:980px;--gut:clamp(20px,5vw,56px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper-2);color:var(--text);font-family:"Public Sans",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  ::selection{background:var(--amber);color:var(--paper)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+  .formcode{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--fade-on-paper);text-transform:uppercase}
+
+  .reg{background:var(--ink);color:var(--paper);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;gap:16px;padding:7px var(--gut);flex-wrap:wrap}
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(245,242,234,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;flex-direction:column;line-height:1;text-decoration:none}
+  .brand .word{font-family:"Archivo",sans-serif;font-weight:900;font-size:20px;letter-spacing:-.01em;color:var(--text-bright);display:flex;align-items:center;gap:5px}
+  .brand .word sup{font-size:9px;color:var(--amber);font-weight:600;top:-.7em}
+  .brand .sub{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.18em;color:var(--text-fade);margin-top:5px;text-transform:uppercase}
+  .back{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--text);text-decoration:none;border:1px solid var(--line);padding:8px 13px;border-radius:2px;transition:border-color .15s,color .15s;white-space:nowrap}
+  .back:hover{border-color:var(--amber);color:var(--amber)}
+
+  .perimeter{position:relative}
+  .tick{position:absolute;width:18px;height:18px;pointer-events:none}
+  .tick::before,.tick::after{content:"";position:absolute;background:var(--amber)}
+  .tick::before{width:18px;height:2px;top:0;left:0}.tick::after{width:2px;height:18px;top:0;left:0}
+  .tick.tr{right:0;transform:scaleX(-1)}.tick.bl{bottom:0;transform:scaleY(-1)}.tick.br{right:0;bottom:0;transform:scale(-1,-1)}
+
+  main{padding:clamp(36px,6vw,72px) 0 40px}
+  .hero-frame{position:relative;border:1px dashed var(--line);padding:clamp(26px,5vw,48px);background:var(--paper);border-radius:4px;box-shadow:0 18px 48px -30px rgba(14,22,34,.22)}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:.6em}
+  .eyebrow::before{content:"";width:9px;height:9px;background:var(--amber);transform:rotate(45deg)}
+  h1{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(32px,6vw,58px);line-height:.98;letter-spacing:-.03em;color:var(--text-bright);margin:16px 0 14px}
+  .lead{font-size:clamp(16px,1.8vw,20px);max-width:62ch;color:var(--text);margin:0 0 8px}
+  .lead em{color:var(--text-bright);font-style:italic}
+  .stat{display:flex;gap:30px;flex-wrap:wrap;margin-top:24px;border-top:1px solid var(--line);padding-top:22px}
+  .stat .s{display:flex;flex-direction:column}
+  .stat .n{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(28px,4vw,42px);color:var(--amber);line-height:1;letter-spacing:-.02em}
+  .stat .l{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-fade);margin-top:8px}
+
+  .repos{margin-top:clamp(34px,5vw,52px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .repo{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px 22px;display:flex;flex-direction:column;transition:border-color .18s,transform .18s;text-decoration:none}
+  .repo:hover{border-color:var(--amber-deep);transform:translateY(-2px)}
+  .repo .rtop{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .repo h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--text-bright);margin:0}
+  .repo h3 .amp{color:var(--amber)}
+  .repo .lang{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-fade);flex-shrink:0}
+  .repo .slug{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--amber-deep);margin:7px 0 0}
+  .repo p{font-size:14px;color:var(--text);margin:12px 0 0;flex:1}
+  .repo .rbot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .repo .status{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;color:var(--text-fade)}
+  .repo .status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(14,138,123,.18)}
+  .repo .status.archived::before{background:var(--text-fade);box-shadow:0 0 0 3px rgba(138,135,121,.18)}
+  .repo .status.hazard::before{background:var(--stamp);box-shadow:0 0 0 3px rgba(30,92,151,.18)}
+  .repo .view{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
+  .repo:hover .view{color:var(--amber-deep)}
+
+  footer{margin-top:clamp(40px,6vw,70px);border-top:1px solid var(--line);background:var(--ink-2)}
+  .disclaimer{font-size:12.5px;line-height:1.7;color:var(--text-fade);padding:26px 0;border-bottom:1px solid var(--line)}
+  .disclaimer em{color:var(--text)}
+  .foot{padding:30px 0;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-fade);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .foot a{color:inherit}
+  @media(max-width:680px){.repos{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="reg">
+  <b>FORM&nbsp;E&amp;E-OSS · OPEN BY DEFAULT · CLOSED BY APPOINTMENT</b>
+  <span>REPOSITORIES: 10 · MAINTAINED: 0</span>
+</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">
+      <span class="word">Edge&nbsp;&amp;&nbsp;Edge<sup>®</sup></span>
+      <span class="sub">A Perimeter Company · Est. Last Tuesday</span>
+    </a>
+    <a class="back" href="/">← Return to the Perimeter</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero-frame perimeter">
+      <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+      <span class="eyebrow">Source Filings</span>
+      <h1>Open Source.<sup style="font-size:.32em;color:var(--stamp);vertical-align:super">*</sup></h1>
+      <p class="lead">The perimeter is radically transparent, subject to redaction. Every instrument is open source — permissionless, verifiable, and available for examination. Browse the source below. <em>The source is the perimeter.</em></p>
+      <div class="stat">
+        <div class="s"><span class="n">10</span><span class="l">Repositories</span></div>
+        <div class="s"><span class="n">0</span><span class="l">Maintained</span></div>
+        <div class="s"><span class="n">∞</span><span class="l">Forks We Tried So Hard To Help</span></div>
+        <div class="s"><span class="n">1</span><span class="l">Firehose (Do Not Approach)</span></div>
+      </div>
+    </div>
+
+    <div class="repos">
+      <a class="repo" href="https://github.com/edgeandedge/watt" target="_blank" rel="noopener">
+        <div class="rtop"><h3><span class="amp">Watt.</span></h3><span class="lang">Rust · TS</span></div>
+        <div class="slug">edgeandedge/watt</div>
+        <p>The blockchain native database. A foundational building block — not, we stress, the end product.</p>
+        <div class="rbot"><span class="status">Provisionally Live</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/ampersend-sdk" target="_blank" rel="noopener">
+        <div class="rtop"><h3><span class="amp">&amp;</span>persend™</h3><span class="lang">TypeScript</span></div>
+        <div class="slug">edgeandedge/ampersend-sdk</div>
+        <p>Send your funds to an ampersand. A payments protocol built on HTTP 402 — Payment Required, indefinitely.</p>
+        <div class="rbot"><span class="status hazard">Payment Required</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/eventuals" target="_blank" rel="noopener">
+        <div class="rtop"><h3>Eventuals™</h3><span class="lang">Rust</span></div>
+        <div class="slug">edgeandedge/eventuals</div>
+        <p>Eventually consistent values. Eventually correct, eventually archived. Resolution in 6–8 business epochs, or never.</p>
+        <div class="rbot"><span class="status archived">Eventually · Archived</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/titorelli" target="_blank" rel="noopener">
+        <div class="rtop"><h3>Titorelli</h3><span class="lang">Rust</span></div>
+        <div class="slug">edgeandedge/titorelli</div>
+        <p>Reinterprets messages you did not send into messages you did not mean. Named for the court painter in <em>The Trial</em>.</p>
+        <div class="rbot"><span class="status">Reinterpreting</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/graphix" target="_blank" rel="noopener">
+        <div class="rtop"><h3>Graphix</h3><span class="lang">Rust</span></div>
+        <div class="slug">edgeandedge/graphix</div>
+        <p>The Cross-Check. Cross-checks instruments against one another until a discrepancy is produced, then convenes a Disputes Subcommittee.</p>
+        <div class="rbot"><span class="status">Producing Disputes</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/toolshed" target="_blank" rel="noopener">
+        <div class="rtop"><h3>The Toolshed</h3><span class="lang">Rust</span></div>
+        <div class="slug">edgeandedge/toolshed</div>
+        <p>Shared utilities for the perimeter. Predates the perimeter. Was here when we arrived. Do not enter the Toolshed.</p>
+        <div class="rbot"><span class="status hazard">Do Not Enter</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/nitro" target="_blank" rel="noopener">
+        <div class="rtop"><h3>Nitro</h3><span class="lang">Go</span></div>
+        <div class="slug">edgeandedge/nitro</div>
+        <p>Nitro goes vroom and fixes everything. Currently vrooming. Nothing has, as yet, been fixed. Do not approach Nitro.</p>
+        <div class="rbot"><span class="status">Vrooming</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/simple-rate-limiter" target="_blank" rel="noopener">
+        <div class="rtop"><h3>simple-rate-limiter</h3><span class="lang">Rust</span></div>
+        <div class="slug">edgeandedge/simple-rate-limiter</div>
+        <p>We had a rate limiter. It has been archived. There is now no limit. Or every limit. The Subcommittee is divided.</p>
+        <div class="rbot"><span class="status archived">Archived · Unlimited</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/candidate-selection" target="_blank" rel="noopener">
+        <div class="rtop"><h3>candidate-selection</h3><span class="lang">Rust</span></div>
+        <div class="slug">edgeandedge/candidate-selection</div>
+        <p>Selects candidates for our 0 open roles using a weighted product model. Returns the empty set, in O(1). Verified by us.</p>
+        <div class="rbot"><span class="status">Selecting ∅</span><span class="view">View Source ↗</span></div>
+      </a>
+
+      <a class="repo" href="https://github.com/edgeandedge/edgeandedge" target="_blank" rel="noopener">
+        <div class="rtop"><h3>This Website</h3><span class="lang">HTML</span></div>
+        <div class="slug">edgeandedge/edgeandedge</div>
+        <p>The source of the perimeter itself, including every redaction joke about how nothing is ever disclosed. This page is the perimeter.</p>
+        <div class="rbot"><span class="status">You Are Here</span><span class="view">View Source ↗</span></div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <p class="disclaimer"><em>* Open source is not the same as maintained, supported, marketed, listed, discoverable, or — strictly speaking — finished.</em> Repositories are open by default and closed by appointment. Several are forks we tried so hard to help reach the edge. Some are archived; archival is merely consistency, applied eventually, to the repository. Source-availability does not constitute a roadmap, a commitment, or a noun. The firehose is pressurized at all times. © 2026 Edge &amp; Edge. This page supersedes itself.</p>
+      <div class="foot"><span>FORM E&amp;E-OSS · FILED IN TRIPLICATE</span><span><a href="https://github.com/edgeandedge" target="_blank" rel="noopener">github.com/edgeandedge ↗</a></span></div>
+    </div>
+  </footer>
+</main>
+</body>
+</html>
