@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wat — Edge &amp; Edge</title>
+<meta name="description" content="The page you requested could not be found, located, or — on balance — confirmed to have ever existed.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Public+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1622;--paper:#FFFFFF;--paper-2:#EFEAE2;
+    --amber:#0E8A7B;--amber-deep:#0B6E62;--stamp:#1E5C97;
+    --line:#E3DDCF;--text:#3C4350;--text-bright:#0E1622;--text-fade:#8A8779;
+    --gut:clamp(20px,5vw,56px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--paper-2);color:var(--text);
+    font-family:"Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column}
+  a{color:inherit}
+  ::selection{background:var(--amber);color:var(--paper)}
+
+  .reg{background:var(--ink);color:var(--paper);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;gap:16px;padding:7px var(--gut);flex-wrap:wrap}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px var(--gut)}
+  .frame{position:relative;border:1px dashed var(--line);background:var(--paper);border-radius:6px;
+    padding:clamp(34px,7vw,72px);max-width:680px;width:100%;text-align:center;
+    box-shadow:0 24px 60px -36px rgba(14,22,34,.3)}
+  /* corner ticks */
+  .tick{position:absolute;width:20px;height:20px}
+  .tick::before,.tick::after{content:"";position:absolute;background:var(--amber)}
+  .tick::before{width:20px;height:2px;top:0;left:0}.tick::after{width:2px;height:20px;top:0;left:0}
+  .tick.tl{top:14px;left:14px}.tick.tr{top:14px;right:14px;transform:scaleX(-1)}
+  .tick.bl{bottom:14px;left:14px;transform:scaleY(-1)}.tick.br{bottom:14px;right:14px;transform:scale(-1,-1)}
+
+  .code{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+  .wat{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(96px,22vw,220px);line-height:.86;
+    letter-spacing:-.05em;margin:14px 0 6px;
+    background:linear-gradient(125deg,#0E8A7B 0%,#2BA37C 48%,#1E5C97 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h1{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(18px,2.6vw,24px);letter-spacing:-.01em;color:var(--text-bright);margin:6px 0 14px}
+  p{font-size:15.5px;line-height:1.65;color:var(--text);max-width:48ch;margin:0 auto 14px}
+  p em{color:var(--text-bright);font-style:italic}
+  .fine{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--text-fade);letter-spacing:.04em;margin-top:18px}
+  .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .btn{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;letter-spacing:.04em;
+    border:none;cursor:pointer;padding:12px 18px;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    transition:transform .12s,background .15s,border-color .15s}
+  .btn-amber{background:var(--amber);color:var(--paper)} .btn-amber:hover{background:#11A593;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--text-bright);border:1px solid var(--line)} .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+  footer{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-fade);text-align:center;padding:22px var(--gut)}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="reg">
+  <b>FORM&nbsp;E&amp;E-404 · NOT FOUND · NOT FORTHCOMING</b>
+  <span>STATUS: wat</span>
+</div>
+
+<main>
+  <div class="frame">
+    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+    <div class="code">Error E&amp;E-404 — Page Not Located</div>
+    <div class="wat">wat</div>
+    <h1>The page you requested could not be found, located, or — on balance — confirmed to have ever existed.</h1>
+    <p>It may have been redacted. It may be <em>coming right up</em>. It may be near the perimeter, in which case it counts for reporting purposes only.</p>
+    <p>The Annex has been notified and will not respond. Your request has been received, noted, and placed in the queue, where it will be processed in no particular order.</p>
+    <div class="btns">
+      <a class="btn btn-amber" href="/">← Return to the Perimeter</a>
+      <a class="btn btn-ghost" href="/reo">Is the REO ready? →</a>
+    </div>
+    <div class="fine">FILED UNDER: things that are not here</div>
+  </div>
+</main>
+
+<footer>This page is the perimeter. The other page was not. © 2026 Edge &amp; Edge.</footer>
+
+</body>
+</html>
