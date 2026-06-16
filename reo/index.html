@@ -75,6 +75,19 @@
   .bar .b-yes{background:var(--yes)} .bar .b-no{background:var(--no)}
   .tally{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--fade-on-paper);margin-top:10px;text-align:center}
   .tally b{color:var(--text-bright)}
+  .namebar{margin-top:14px}
+  .namebar input{width:100%;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--text-bright);background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:11px 13px;outline:none}
+  .namebar input::placeholder{color:var(--text-fade)}
+  .namebar input:focus{border-color:var(--amber)}
+  .recent{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+  .recent-h{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-fade);margin-bottom:11px}
+  .recent ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .recent li{display:flex;align-items:center;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--text)}
+  .recent li .who{color:var(--text-bright);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%}
+  .recent li .pill{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 8px;flex-shrink:0}
+  .recent li .pill.y{color:var(--yes);border:1px solid var(--yes)}
+  .recent li .pill.n{color:var(--no);border:1px solid var(--no)}
+  .recent li .ago{color:var(--text-fade);margin-left:auto;flex-shrink:0}
 
   /* official stance */
   .stance{background:var(--ink);color:var(--paper);border-radius:6px;padding:clamp(24px,4vw,40px);margin-top:30px;position:relative;overflow:hidden}
@@ -172,6 +185,13 @@
       </div>
       <div class="bar"><i class="b-yes" id="bar-yes" style="width:28%"></i><i class="b-no" id="bar-no" style="width:72%"></i></div>
       <div class="tally"><b id="total">10,053</b> votes cast · all advisory, none binding · <span id="hint">tap YES or NO to participate in the perimeter</span></div>
+      <div class="namebar">
+        <input id="voter" maxlength="24" placeholder="optional: a name for the record (the Annex is watching)" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="recent" id="recent" hidden>
+        <div class="recent-h">Recent participants in the perimeter</div>
+        <ul id="recent-list"></ul>
+      </div>
     </div>
 
     <!-- official stance -->
@@ -219,28 +239,42 @@
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function fmt(n){return n.toLocaleString("en-US");}
-
-  // ---- vote tally (persisted) ----
-  var KEY="reo_votes_v1";
-  var seed={yes:2814, no:7239};
-  var votes;
-  try{ votes=JSON.parse(localStorage.getItem(KEY))||seed; }catch(e){ votes=seed; }
-  if(typeof votes.yes!=="number"||typeof votes.no!=="number") votes=seed;
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function ago(t){ var s=Math.max(0,Math.floor((Date.now()-t)/1000)); if(s<60)return s+"s ago"; var m=Math.floor(s/60); if(m<60)return m+"m ago"; var h=Math.floor(m/60); if(h<24)return h+"h ago"; return Math.floor(h/24)+"d ago"; }
 
   var yesPct=document.getElementById("yes-pct"), noPct=document.getElementById("no-pct");
   var yesPrice=document.getElementById("yes-price"), noPrice=document.getElementById("no-price");
   var barYes=document.getElementById("bar-yes"), barNo=document.getElementById("bar-no");
   var totalEl=document.getElementById("total"), volEl=document.getElementById("vol");
+  var voterInput=document.getElementById("voter");
+  var recentBox=document.getElementById("recent"), recentList=document.getElementById("recent-list");
 
-  function render(){
-    var t=votes.yes+votes.no;
-    var y=Math.round(votes.yes/t*100); var n=100-y;
+  // ---- shared (API) with local fallback ----
+  var KEY="reo_votes_v1";
+  var apiOK=null; // null=unknown, true=global, false=local fallback
+  var local;
+  try{ local=JSON.parse(localStorage.getItem(KEY))||{yes:2814,no:7239}; }catch(e){ local={yes:2814,no:7239}; }
+  if(typeof local.yes!=="number"||typeof local.no!=="number") local={yes:2814,no:7239};
+  function saveLocal(){ try{ localStorage.setItem(KEY, JSON.stringify(local)); }catch(e){} }
+
+  function render(yes,no){
+    var t=yes+no; if(t<=0) t=1;
+    var y=Math.round(yes/t*100); var n=100-y;
     yesPct.textContent=y+"%"; noPct.textContent=n+"%";
-    yesPrice.textContent="$"+(votes.yes/t).toFixed(2); noPrice.textContent="$"+(votes.no/t).toFixed(2);
+    yesPrice.textContent="$"+(yes/t).toFixed(2); noPrice.textContent="$"+(no/t).toFixed(2);
     barYes.style.width=y+"%"; barNo.style.width=n+"%";
     totalEl.textContent=fmt(t);
   }
-  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(votes)); }catch(e){} }
+  function renderRecent(list){
+    if(!list||!list.length){ recentBox.hidden=true; return; }
+    recentList.innerHTML=list.slice(0,12).map(function(v){
+      var cls=v.s==="yes"?"y":"n", lab=v.s==="yes"?"YES":"NO";
+      return '<li><span class="who">'+esc(v.n||"anon")+'</span>'+
+             '<span class="pill '+cls+'">'+lab+'</span>'+
+             '<span class="ago">'+ago(v.t||Date.now())+'</span></li>';
+    }).join("");
+    recentBox.hidden=false;
+  }
 
   var toast=document.getElementById("toast"), tt=null;
   function showToast(m){ toast.textContent=m; toast.classList.add("show"); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove("show");},3600); }
@@ -260,18 +294,31 @@
     "A SENSIBLE VOTE. PLEASE DO NOT TELL THE OFFICE OF FORWARD MOMENTUM."
   ];
   var yi=0, ni=0;
-  document.getElementById("hint");
+
+  // initial load — try the global store, else fall back to local
+  fetch("/api/votes").then(function(r){return r.json();}).then(function(d){
+    if(d && d.configured){ apiOK=true; render(d.yes,d.no); renderRecent(d.recent); }
+    else { apiOK=false; render(local.yes, local.no); }
+  }).catch(function(){ apiOK=false; render(local.yes, local.no); });
 
   function vote(side){
-    if(side==="yes"){ votes.yes++; showToast(yesMsgs[Math.min(yi,yesMsgs.length-1)]); yi++; }
-    else { votes.no++; showToast(noMsgs[Math.min(ni,noMsgs.length-1)]); ni++; }
-    save(); render();
+    showToast((side==="yes"?yesMsgs[Math.min(yi++,yesMsgs.length-1)]:noMsgs[Math.min(ni++,noMsgs.length-1)]));
+    var name=(voterInput.value||"").trim().slice(0,24);
+    if(apiOK){
+      fetch("/api/votes",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({side:side,name:name})})
+        .then(function(r){return r.json();})
+        .then(function(d){ if(d&&typeof d.yes==="number"){ render(d.yes,d.no); renderRecent(d.recent);} })
+        .catch(function(){ local[side]++; saveLocal(); render(local.yes,local.no); });
+    } else {
+      local[side]++; saveLocal(); render(local.yes,local.no);
+    }
   }
   var vy=document.getElementById("vote-yes"), vn=document.getElementById("vote-no");
   vy.addEventListener("click", function(){vote("yes");});
   vn.addEventListener("click", function(){vote("no");});
   [["yes",vy],["no",vn]].forEach(function(p){ p[1].addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();vote(p[0]);} }); });
-  render();
+  // refresh the global tally periodically so it feels live
+  if(!reduce) setInterval(function(){ if(apiOK){ fetch("/api/votes").then(function(r){return r.json();}).then(function(d){ if(d&&d.configured){ render(d.yes,d.no); renderRecent(d.recent);} }).catch(function(){}); } }, 12000);
 
   // volume ticks up forever
   var vol=Math.floor(18000000+Math.random()*900000);
