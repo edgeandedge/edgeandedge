@@ -12,6 +12,13 @@ const K_RECENT = "reo:recent";
 const SEED_YES = 2814; // so the market opens at the established ~28% / 72%
 const SEED_NO = 7239;
 const RECENT_MAX = 30;
+const RL_LIMIT = 10; // votes per window, per IP
+const RL_WINDOW = 60; // seconds
+
+function clientIp(req) {
+  const fwd = (req.headers["x-forwarded-for"] || "").split(",")[0].trim();
+  return fwd || req.headers["x-real-ip"] || "unknown";
+}
 
 async function pipeline(commands) {
   const r = await fetch(`${REST_URL}/pipeline`, {
@@ -56,6 +63,20 @@ export default async function handler(req, res) {
       body = body || {};
       const side = body.side === "yes" ? "yes" : body.side === "no" ? "no" : null;
       if (!side) return res.status(400).json({ error: "side must be 'yes' or 'no'" });
+
+      // rate limit (fixed window per IP)
+      const rlKey = "reo:rl:" + clientIp(req);
+      const rl = await pipeline([
+        ["INCR", rlKey],
+        ["EXPIRE", rlKey, String(RL_WINDOW)],
+      ]);
+      const hits = parseInt(rl[0].result, 10) || 0;
+      if (hits > RL_LIMIT) {
+        return res.status(429).json({
+          error: "rate_limited",
+          message: "RATE LIMITED — your enthusiasm exceeds the perimeter's allocation. Focus is a scarce resource; it has been allocated. Return after a cooling-off epoch.",
+        });
+      }
 
       const name = cleanName(body.name) || "anon";
       const entry = JSON.stringify({ n: name, s: side, t: Date.now() });

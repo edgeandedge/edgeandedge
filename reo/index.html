@@ -306,8 +306,11 @@
     var name=(voterInput.value||"").trim().slice(0,24);
     if(apiOK){
       fetch("/api/votes",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({side:side,name:name})})
-        .then(function(r){return r.json();})
-        .then(function(d){ if(d&&typeof d.yes==="number"){ render(d.yes,d.no); renderRecent(d.recent);} })
+        .then(function(r){ return r.json().then(function(d){ return {s:r.status, d:d}; }); })
+        .then(function(o){
+          if(o.s===429 && o.d && o.d.message){ showToast(o.d.message); return; }
+          if(o.d && typeof o.d.yes==="number"){ render(o.d.yes,o.d.no); renderRecent(o.d.recent); }
+        })
         .catch(function(){ local[side]++; saveLocal(); render(local.yes,local.no); });
     } else {
       local[side]++; saveLocal(); render(local.yes,local.no);
