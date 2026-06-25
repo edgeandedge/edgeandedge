@@ -362,11 +362,14 @@
   .team{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .member{border:1px solid var(--line);border-radius:3px;padding:26px 24px;background:var(--ink-2)}
   .member .avatar{
-    width:54px;height:54px;border-radius:50%;border:2px dashed var(--line);
+    width:64px;height:64px;border-radius:50%;border:2px dashed var(--line);
     display:flex;align-items:center;justify-content:center;margin-bottom:18px;
     font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;color:var(--text-fade);
   }
+  .member .avatar.photo{border:2px solid var(--line);padding:0;overflow:hidden}
+  .member .avatar.photo img{width:100%;height:100%;object-fit:cover;display:block}
   .member .nm{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:14px;letter-spacing:.08em;color:var(--stamp);background:rgba(30,92,151,.12);padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:10px}
+  .member .nm.named{color:var(--text-bright);background:rgba(14,138,123,.12)}
   .member .role{font-family:"Archivo",sans-serif;font-weight:700;font-size:18px;color:var(--text-bright);letter-spacing:-.01em}
   .team-note{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--text-fade);margin-top:22px;letter-spacing:.04em}
 
@@ -877,16 +880,16 @@
 <section class="article" id="membership">
   <div class="wrap">
     <div class="art-head reveal"><span class="art-num">The Annex</span><h2>The Standing Membership</h2></div>
-    <p class="art-lead reveal">Our leadership brings decades of combined experience at the edge. Names are withheld pending review of the perimeter.</p>
+    <p class="art-lead reveal">Our leadership brings decades of combined experience at the edge. Several names have, after extensive review, been provisionally cleared for disclosure.</p>
     <div class="team reveal">
-      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Chief Perimeter Officer</div></div>
-      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">SVP, Forward Momentum</div></div>
-      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Custodian of the Edge</div></div>
-      <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Interim Permanent Secretary</div></div>
+      <div class="member"><div class="avatar photo"><img src="/team/manuelo.jpg" alt="Manuelo Rollero" loading="lazy"></div><span class="nm named">Manuelo Rollero</span><div class="role">Founder &amp; Chief Perimeter Officer</div></div>
+      <div class="member"><div class="avatar photo"><img src="/team/volvo.jpg" alt="Volvo Pence" loading="lazy"></div><span class="nm named">Volvo Pence</span><div class="role">Chief Substrate Officer</div></div>
+      <div class="member"><div class="avatar photo"><img src="/team/nickey.jpg" alt="Nickey Magnus" loading="lazy"></div><span class="nm named">Nickey Magnus</span><div class="role">SVP, Business Development &amp; Forward-Looking Statements</div></div>
+      <div class="member"><div class="avatar photo"><img src="/team/petco.jpg" alt="Petco Petcovic" loading="lazy"></div><span class="nm named">Petco Petcovic</span><div class="role">Chief Shipping Officer <span style="color:var(--text-fade);font-weight:400">(we are the only ones shipping)</span></div></div>
       <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Head of Adjacency</div></div>
       <div class="member"><div class="avatar">[ NO IMAGE ]</div><span class="nm">[ REDACTED ]</span><div class="role">Keeper of the Firehose</div></div>
     </div>
-    <p class="team-note reveal">† Photographs withheld pending review of the perimeter. The Keeper of the Firehose is not to be approached.</p>
+    <p class="team-note reveal">† Remaining photographs withheld pending review of the perimeter. The Keeper of the Firehose is not to be approached. The Chief Shipping Officer is not to be encouraged.</p>
   </div>
 </section>
 
